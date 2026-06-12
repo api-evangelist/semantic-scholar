@@ -1,0 +1,106 @@
+aid: semantic-scholar
+name: Semantic Scholar
+description: >
+  Semantic Scholar is a free, AI-powered academic search engine developed by the Allen
+  Institute for AI (AI2) that indexes over 214 million scholarly papers with 2.49 billion
+  citations and 79 million authors. The platform provides a public REST API organized into
+  three services: Academic Graph (papers, authors, citations, venues, and SPECTER2 embeddings),
+  Recommendations (paper similarity and interest-based suggestions), and Datasets (bulk
+  downloadable corpus snapshots updated monthly). API access is available without authentication
+  at a shared rate limit, or with a free API key obtained via request for a dedicated 1 RPS
+  allowance. Semantic Scholar supports AI agent integrations through multiple community-built
+  MCP servers that expose its academic graph to LLM-based toolchains.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Academic
+  - Research
+  - Papers
+  - Citations
+  - Authors
+  - Scientific Literature
+  - AI
+  - Recommendations
+url: https://raw.githubusercontent.com/api-evangelist/semantic-scholar/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - name: Semantic Scholar Academic Graph API
+    description: >
+      RESTful API providing access to 214M+ academic papers, 79M authors, 2.49B citations,
+      venues, and SPECTER2 vector embeddings. Supports single-item lookups, keyword search,
+      bulk retrieval, and citation/reference traversal.
+    humanURL: https://www.semanticscholar.org/product/api
+    baseURL: https://api.semanticscholar.org/graph/v1
+    tags:
+      - Papers
+      - Authors
+      - Citations
+      - Search
+      - Embeddings
+    properties:
+      - type: Documentation
+        url: https://api.semanticscholar.org/api-docs/
+      - type: OpenAPI
+        url: https://api.semanticscholar.org/api-docs/
+  - name: Semantic Scholar Recommendations API
+    description: >
+      Returns recommended papers similar to a given publication or aligned with a learned
+      model of a researcher's topical interests. Supports both single-paper and multi-paper
+      positive/negative input modes.
+    humanURL: https://www.semanticscholar.org/product/api
+    baseURL: https://api.semanticscholar.org/recommendations/v1
+    tags:
+      - Recommendations
+      - Papers
+      - Machine Learning
+    properties:
+      - type: Documentation
+        url: https://api.semanticscholar.org/api-docs/recommendations
+  - name: Semantic Scholar Datasets API
+    description: >
+      Provides downloadable bulk snapshots of the full Semantic Scholar academic graph,
+      updated monthly. Supports incremental diff downloads between releases. Requires
+      an API key for authentication.
+    humanURL: https://www.semanticscholar.org/product/api
+    baseURL: https://api.semanticscholar.org/datasets/v1
+    tags:
+      - Datasets
+      - Bulk Download
+      - Corpus
+    properties:
+      - type: Documentation
+        url: https://api.semanticscholar.org/api-docs/
+common:
+  - type: Website
+    url: https://www.semanticscholar.org
+  - type: Documentation
+    url: https://www.semanticscholar.org/product/api
+  - type: GitHubOrganization
+    url: https://github.com/allenai
+  - type: GitHubRepository
+    url: https://github.com/allenai/s2-folks
+  - type: Blog
+    url: https://medium.com/ai2-blog/semantic-scholar/home
+  - type: StatusPage
+    url: https://status.api.semanticscholar.org/
+  - type: X
+    url: https://twitter.com/SemanticScholar
+  - type: Pricing
+    url: https://www.semanticscholar.org/product/api
+  - type: PrivacyPolicy
+    url: https://www.semanticscholar.org/privacy-policy
+  - type: TermsOfService
+    url: https://www.semanticscholar.org/product/api/license
+  - type: Tutorial
+    url: https://www.semanticscholar.org/product/api/tutorial
+  - type: Plans
+    url: plans/semantic-scholar-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/semantic-scholar-rate-limits.yml
+  - type: FinOps
+    url: finops/semantic-scholar-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,52 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: Semantic Scholar
+providerId: semantic-scholar
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+type: freemium
+description: >
+  Semantic Scholar offers free API access to its academic graph. Unauthenticated requests
+  share a rate-limited pool. A free API key (requested via the developer portal) provides
+  a dedicated per-second rate. No paid commercial tiers are publicly listed; higher rate
+  limits are granted on a case-by-case basis after review of the stated use case.
+  Dataset bulk downloads require an API key and are also free.
+plans:
+  - name: Unauthenticated (Public)
+    description: >
+      Access the API without any credentials. Requests share a global rate limit pool
+      with all other unauthenticated callers. Suitable only for ad-hoc exploration.
+    type: free
+    rateLimitRPS: null
+    rateLimitShared: true
+    rateLimitWindow: 300
+    rateLimitRequests: 100
+    authentication: none
+    notes: >
+      100 requests per 5 minutes shared pool. Performance may degrade during peak usage.
+  - name: Authenticated (API Key)
+    description: >
+      Obtain a free API key by applying via the Semantic Scholar developer portal using
+      a non-free-domain institutional email address. Provides a dedicated per-user rate
+      limit across all endpoints.
+    type: free
+    rateLimitRPS: 1
+    rateLimitShared: false
+    authentication: api-key
+    apiKeyHeader: x-api-key
+    notes: >
+      Introductory allowance of 1 request per second on all endpoints. May be increased
+      after review. API keys inactive for ~60 days are automatically pruned. Applications
+      from free email domains (gmail, yahoo, etc.) are no longer accepted. Third-party
+      application key requests are not approved.
+  - name: Dataset Access (API Key Required)
+    description: >
+      Bulk corpus downloads via the Datasets API endpoint. Requires an API key.
+      Provides full and incremental (diff) snapshots of the academic graph updated monthly.
+    type: free
+    authentication: api-key
+    apiKeyHeader: x-api-key
+    notes: >
+      Intended for researchers needing higher throughput than the per-second API key
+      limit allows. Dataset releases are versioned and support diff-based incremental updates.

@@ -1,0 +1,72 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: Semantic Scholar
+providerId: semantic-scholar
+created: '2026-06-12'
+modified: '2026-06-12'
+description: >
+  Semantic Scholar provides its Academic Graph API, Recommendations API, and Datasets API
+  at no direct monetary cost to API consumers. The FinOps considerations are therefore
+  centered on indirect costs: engineering time, infrastructure for local caching or dataset
+  storage, compute for processing bulk corpus downloads, and organizational risk management
+  related to rate-limit-induced latency or key revocation.
+billingModel: free
+focusColumns:
+  - ChargeType: Usage
+  - ChargeCategory: None
+  - BilledCurrency: N/A
+  - ConsumedUnit: API Requests
+  - ConsumedQuantity: variable
+  - ListUnitPrice: 0.00
+  - EffectiveUnitPrice: 0.00
+  - InvoiceIssuerName: Allen Institute for AI (AI2)
+  - ServiceName: Semantic Scholar Academic Graph API
+  - ServiceCategory: Analytics
+  - ResourceType: REST API
+meters:
+  - name: API Requests (Unauthenticated)
+    unit: requests
+    price: 0.00
+    limit: 100 per 5 minutes (shared pool)
+    notes: No cost; indirect cost is shared contention and unpredictable latency.
+  - name: API Requests (Authenticated / API Key)
+    unit: requests_per_second
+    price: 0.00
+    limit: 1 RPS dedicated
+    notes: Free API key; indirect costs include key management and potential review delays.
+  - name: Dataset Download
+    unit: corpus_snapshot
+    price: 0.00
+    limit: monthly snapshots with diff support
+    notes: >
+      Bulk corpus files may be large (multi-GB). Indirect costs include egress bandwidth,
+      storage, and compute for data processing pipelines.
+principles:
+  - name: Visibility
+    description: >
+      Track API usage volume and error rates (especially 429s) using application-level
+      metrics. Monitor the status page at status.api.semanticscholar.org to anticipate
+      service disruptions.
+    actions:
+      - Instrument all API calls with logging for response codes, latency, and retry counts.
+      - Set up alerting on elevated 429 rate to detect approaching rate limit boundaries.
+      - Review API release notes and the s2-folks GitHub repository for breaking changes.
+  - name: Optimization
+    description: >
+      Minimize requests through caching, batching, and selective field retrieval to stay
+      within rate limits and reduce downstream compute costs.
+    actions:
+      - Use POST /paper/batch and equivalent bulk endpoints instead of sequential GETs.
+      - Request only required fields using the `fields` query parameter to reduce payload size.
+      - Cache paper and author records locally; re-query only when freshness is required.
+      - For high-volume workloads, use the Datasets API bulk corpus instead of per-record API calls.
+      - Implement exponential backoff to avoid wasted retry requests during throttling windows.
+  - name: Risk Management
+    description: >
+      API key availability is not guaranteed — keys are pruned after ~60 days of inactivity
+      and new key approval is subject to review backlogs. Plan for continuity risks.
+    actions:
+      - Keep API keys active with at least one request every 30 days.
+      - Maintain a local dataset snapshot as a fallback for critical workloads.
+      - Do not depend on third-party application key access; each production system should
+        hold its own institutional-email-registered key.

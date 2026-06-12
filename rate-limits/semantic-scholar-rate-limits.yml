@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: Semantic Scholar
+providerId: semantic-scholar
+created: '2026-06-12'
+modified: '2026-06-12'
+description: >
+  The Semantic Scholar API enforces rate limits at both the unauthenticated (shared pool)
+  and authenticated (per-key) levels. Exceeding any limit returns HTTP 429 Too Many Requests.
+  The documentation recommends implementing exponential backoff strategies for all callers.
+retryAfter:
+  header: Retry-After
+  description: >
+    When a 429 response is returned, callers should respect any Retry-After header and
+    implement exponential backoff before retrying requests.
+throttled:
+  statusCode: 429
+  description: Too Many Requests — rate limit exceeded for the current window or per-second allowance.
+limits:
+  - scope: unauthenticated
+    metric: requests
+    limit: 100
+    timeFrame: 300
+    unit: seconds
+    notes: >
+      Shared pool across all unauthenticated users. Effective throughput will be lower
+      during peak usage periods.
+  - scope: authenticated-api-key
+    metric: requests_per_second
+    limit: 1
+    timeFrame: 1
+    unit: seconds
+    notes: >
+      Introductory dedicated rate of 1 RPS across all API endpoints (Academic Graph,
+      Recommendations, Datasets). Higher limits may be granted after submitting a use-case
+      review request to the Semantic Scholar team.
+  - scope: datasets-api
+    metric: requests
+    limit: null
+    timeFrame: null
+    unit: null
+    notes: >
+      Bulk dataset downloads are gated behind API key authentication. No published per-second
+      rate limit; exponential backoff is still recommended for large batch jobs.
+recommendations:
+  - Use bulk/batch endpoints (e.g., POST /paper/batch) instead of individual lookups when
+    retrieving multiple records to reduce total request count.
+  - Download full corpus snapshots via the Datasets API when request volume requirements
+    exceed per-key rate limits.
+  - Implement exponential backoff with jitter for all production integrations.
+  - Cache responses locally to avoid redundant requests against the same paper or author IDs.
