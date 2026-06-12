@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.semanticscholar.org/recommendations/v1/papers/forpaper/204e3073870fae3d05bcbc2f6a8e263d9b72e776?fields=title,year,citationCount&limit=3"
+  },
+  "response": {
+    "recommendedPapers": [
+      {
+        "paperId": "0737c52bc46c6cb18e6f4e2cdcd88de8e2cf22f2",
+        "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "year": 2019,
+        "citationCount": 60000
+      },
+      {
+        "paperId": "9405cc0d6169988371b2755e573cc28650d14dfe",
+        "title": "Language Models are Few-Shot Learners",
+        "year": 2020,
+        "citationCount": 30000
+      }
+    ]
+  }
+}

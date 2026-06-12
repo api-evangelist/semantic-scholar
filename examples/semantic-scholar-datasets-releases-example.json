@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.semanticscholar.org/datasets/v1/release/",
+    "headers": {
+      "x-api-key": "YOUR_API_KEY"
+    }
+  },
+  "response": [
+    "2024-01-02",
+    "2024-02-06",
+    "2024-03-05",
+    "2024-04-02",
+    "2024-05-07"
+  ]
+}

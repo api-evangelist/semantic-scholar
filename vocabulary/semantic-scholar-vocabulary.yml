@@ -1,0 +1,112 @@
+vocabulary:
+  name: Semantic Scholar Vocabulary
+  description: >
+    Controlled vocabulary of core terms used across the Semantic Scholar Academic Graph API,
+    Recommendations API, and Datasets API.
+  url: https://www.semanticscholar.org/product/api
+  terms:
+
+    - term: paper
+      definition: >
+        A scholarly publication indexed in the Semantic Scholar Academic Graph. Each paper
+        is identified by a unique paperId (string) and optionally by a corpusId (int64).
+      aliases:
+        - publication
+        - article
+
+    - term: paperId
+      definition: >
+        The primary string identifier for a paper in the Semantic Scholar system. Used in
+        API paths and query parameters. Example: 204e3073870fae3d05bcbc2f6a8e263d9b72e776
+
+    - term: corpusId
+      definition: >
+        A secondary integer identifier for a paper, used in bulk dataset releases and
+        inter-dataset references. Distinct from paperId.
+
+    - term: author
+      definition: >
+        A researcher who has authored one or more papers in the Semantic Scholar graph.
+        Identified by an authorId string.
+
+    - term: authorId
+      definition: >
+        Unique string identifier for an author in the Semantic Scholar system.
+
+    - term: citation
+      definition: >
+        A directed relationship from a citing paper to a cited paper, including optional
+        context sentences and influence classification.
+
+    - term: reference
+      definition: >
+        A paper listed in the bibliography/references of another paper; the inverse
+        direction of a citation.
+
+    - term: citationCount
+      definition: >
+        The number of papers in the Semantic Scholar graph that cite a given paper.
+
+    - term: influentialCitationCount
+      definition: >
+        The count of highly influential citations a paper has received, as determined by
+        Semantic Scholar's citation influence classifier.
+
+    - term: hIndex
+      definition: >
+        The h-index of an author; the largest number h such that h papers by the author
+        each have at least h citations.
+
+    - term: embedding
+      definition: >
+        A dense vector representation of a paper computed using the SPECTER2 model,
+        suitable for semantic similarity search and clustering.
+
+    - term: tldr
+      definition: >
+        A short, auto-generated one-sentence summary of a paper produced by Semantic
+        Scholar's AI model. Stands for "Too Long; Didn't Read."
+
+    - term: openAccessPdf
+      definition: >
+        A link to a freely available PDF of a paper when one exists. Includes a status
+        field indicating how open access was determined.
+
+    - term: externalIds
+      definition: >
+        A map of identifiers from external bibliographic databases (e.g., DOI, ArXiv,
+        PubMed, DBLP, MAG) associated with a paper.
+
+    - term: venue
+      definition: >
+        The journal, conference, or workshop where a paper was published.
+
+    - term: fieldsOfStudy
+      definition: >
+        A list of high-level research domains assigned to a paper by Semantic Scholar's
+        classifier (e.g., Computer Science, Biology, Medicine).
+
+    - term: s2FieldsOfStudy
+      definition: >
+        Fine-grained field-of-study classifications produced by Semantic Scholar's own
+        classification model, including a confidence category.
+
+    - term: release
+      definition: >
+        A dated snapshot of the Semantic Scholar bulk dataset corpus, identified by a
+        release date string (e.g., "2024-04-02"). Published monthly.
+
+    - term: dataset
+      definition: >
+        A named file within a dataset release (e.g., papers, authors, citations, abstracts,
+        embeddings) available for bulk download via the Datasets API.
+
+    - term: diff
+      definition: >
+        An incremental set of changes (additions and deletions) between two successive
+        dataset releases, enabling efficient corpus updates without full re-download.
+
+    - term: snippet
+      definition: >
+        A short passage from a paper's full text returned by the snippet search endpoint,
+        with character offsets and section annotations.

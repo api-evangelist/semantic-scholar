@@ -1,0 +1,15 @@
+{
+  "name": "Semantic Scholar Blogs",
+  "description": "Blog feed tracking for the Semantic Scholar provider, sourced from the Allen Institute for AI (AI2) Medium publication.",
+  "url": "https://medium.com/ai2-blog/semantic-scholar/home",
+  "feeds": [
+    {
+      "name": "AI2 Blog on Medium",
+      "rss": "https://medium.com/feed/ai2-blog",
+      "url": "https://medium.com/ai2-blog",
+      "description": "Official blog of the Allen Institute for AI, publisher of Semantic Scholar research and product updates.",
+      "last_fetched": null,
+      "posts": []
+    }
+  ]
+}

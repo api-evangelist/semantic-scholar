@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Release Metadata",
+  "description": "Metadata for a Semantic Scholar dataset release",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/semantic-scholar/refs/heads/main/json-schema/semantic-scholar-dataset-release.json",
+  "properties": {
+    "release_id": {
+      "type": "string",
+      "example": "2022-01-17"
+    },
+    "README": {
+      "type": "string",
+      "description": "License and usage",
+      "example": "Subject to the following terms ..."
+    },
+    "datasets": {
+      "type": "array",
+      "description": "Dataset metadata",
+      "items": {
+        "$ref": "#/definitions/Dataset Summary"
+      }
+    }
+  },
+  "type": "object",
+  "definitions": {
+    "Release Metadata": {
+      "properties": {
+        "release_id": {
+          "type": "string",
+          "example": "2022-01-17"
+        },
+        "README": {
+          "type": "string",
+          "description": "License and usage",
+          "example": "Subject to the following terms ..."
+        },
+        "datasets": {
+          "type": "array",
+          "description": "Dataset metadata",
+          "items": {
+            "$ref": "#/definitions/Dataset Summary"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Dataset Summary": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dataset name",
+          "example": "papers"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the data in the dataset",
+          "example": "Core paper metadata"
+        },
+        "README": {
+          "type": "string",
+          "description": "Documentation and attribution for the dataset",
+          "example": "This dataset contains ..."
+        }
+      },
+      "type": "object"
+    },
+    "Dataset Metadata": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the dataset",
+          "example": "papers"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the data contained in this dataset.",
+          "example": "Core paper metadata"
+        },
+        "README": {
+          "type": "string",
+          "description": "License and usage",
+          "example": "Subject to terms of use as follows ..."
+        },
+        "files": {
+          "type": "array",
+          "description": "Temporary, pre-signed download links for dataset files",
+          "items": {
+            "type": "string",
+            "example": "https://..."
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Dataset Diff List": {
+      "properties": {
+        "dataset": {
+          "type": "string",
+          "description": "Dataset these diffs are for.",
+          "example": "papers"
+        },
+        "start_release": {
+          "type": "string",
+          "description": "Beginning release, i.e. the release currently held by the client.",
+          "example": "2023-08-01"
+        },
+        "end_release": {
+          "type": "string",
+          "description": "Ending release, i.e. the release the client wants to update to.",
+          "example": "2023-08-29"
+        },
+        "diffs": {
+          "type": "array",
+          "description": "List of diffs that need to be applied to bring the dataset at 'start_release' up to date with 'end_release'.",
+          "items": {
+            "$ref": "#/definitions/Dataset Diff"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Dataset Diff": {
+      "properties": {
+        "from_release": {
+          "type": "string",
+          "description": "Basline release for this diff.",
+          "example": "2023-08-01"
+        },
+        "to_release": {
+          "type": "string",
+          "description": "Target release for this diff.",
+          "example": "2023-08-07"
+        },
+        "update_files": {
+          "type": "array",
+          "description": "List of files that contain updates to the dataset. Each record in these files needs to be insterted or updated.",
+          "items": {
+            "type": "string",
+            "example": "http://..."
+          }
+        },
+        "delete_files": {
+          "type": "array",
+          "description": "List of files that contain deletes from the dataset. Each record in these files needs to be deleted.",
+          "items": {
+            "type": "string",
+            "example": "http://..."
+          }
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -43,7 +43,7 @@ apis:
       - type: Documentation
         url: https://api.semanticscholar.org/api-docs/
       - type: OpenAPI
-        url: https://api.semanticscholar.org/api-docs/
+        url: openapi/semantic-scholar-academic-graph-openapi.yml
   - name: Semantic Scholar Recommendations API
     description: >
       Returns recommended papers similar to a given publication or aligned with a learned
@@ -58,6 +58,8 @@ apis:
     properties:
       - type: Documentation
         url: https://api.semanticscholar.org/api-docs/recommendations
+      - type: OpenAPI
+        url: openapi/semantic-scholar-recommendations-openapi.yml
   - name: Semantic Scholar Datasets API
     description: >
       Provides downloadable bulk snapshots of the full Semantic Scholar academic graph,
@@ -72,6 +74,8 @@ apis:
     properties:
       - type: Documentation
         url: https://api.semanticscholar.org/api-docs/
+      - type: OpenAPI
+        url: openapi/semantic-scholar-datasets-openapi.yml
 common:
   - type: Website
     url: https://www.semanticscholar.org

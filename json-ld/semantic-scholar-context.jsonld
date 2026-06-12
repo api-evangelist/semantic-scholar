@@ -1,0 +1,144 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "s2": "https://api.semanticscholar.org/graph/v1/",
+
+    "Paper": {
+      "@id": "schema:ScholarlyArticle"
+    },
+    "paperId": {
+      "@id": "schema:identifier"
+    },
+    "corpusId": {
+      "@id": "s2:corpusId",
+      "@type": "schema:Integer"
+    },
+    "title": {
+      "@id": "schema:name"
+    },
+    "abstract": {
+      "@id": "schema:abstract"
+    },
+    "year": {
+      "@id": "schema:datePublished",
+      "@type": "schema:Integer"
+    },
+    "venue": {
+      "@id": "schema:isPartOf"
+    },
+    "publicationVenue": {
+      "@id": "schema:Periodical"
+    },
+    "authors": {
+      "@id": "schema:author",
+      "@container": "@list"
+    },
+    "Author": {
+      "@id": "schema:Person"
+    },
+    "authorId": {
+      "@id": "schema:identifier"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "hIndex": {
+      "@id": "s2:hIndex",
+      "@type": "schema:Integer"
+    },
+    "citationCount": {
+      "@id": "s2:citationCount",
+      "@type": "schema:Integer"
+    },
+    "influentialCitationCount": {
+      "@id": "s2:influentialCitationCount",
+      "@type": "schema:Integer"
+    },
+    "referenceCount": {
+      "@id": "s2:referenceCount",
+      "@type": "schema:Integer"
+    },
+    "citations": {
+      "@id": "schema:citation",
+      "@container": "@list"
+    },
+    "references": {
+      "@id": "s2:references",
+      "@container": "@list"
+    },
+    "externalIds": {
+      "@id": "schema:sameAs"
+    },
+    "doi": {
+      "@id": "schema:identifier"
+    },
+    "openAccessPdf": {
+      "@id": "schema:url"
+    },
+    "fieldsOfStudy": {
+      "@id": "schema:about",
+      "@container": "@list"
+    },
+    "tldr": {
+      "@id": "s2:tldr"
+    },
+    "embedding": {
+      "@id": "s2:embedding"
+    },
+    "Embedding": {
+      "@id": "s2:Embedding"
+    },
+    "model": {
+      "@id": "s2:embeddingModel"
+    },
+    "vector": {
+      "@id": "s2:embeddingVector",
+      "@container": "@list"
+    },
+    "Citation": {
+      "@id": "schema:citation"
+    },
+    "citingPaper": {
+      "@id": "s2:citingPaper"
+    },
+    "citedPaper": {
+      "@id": "s2:citedPaper"
+    },
+    "isInfluential": {
+      "@id": "s2:isInfluential",
+      "@type": "schema:Boolean"
+    },
+    "contexts": {
+      "@id": "s2:citationContext",
+      "@container": "@list"
+    },
+    "intents": {
+      "@id": "s2:citationIntent",
+      "@container": "@list"
+    },
+    "Dataset": {
+      "@id": "schema:Dataset"
+    },
+    "Release": {
+      "@id": "s2:Release"
+    },
+    "releaseId": {
+      "@id": "schema:identifier"
+    },
+    "datasets": {
+      "@id": "schema:hasPart",
+      "@container": "@list"
+    },
+    "Snippet": {
+      "@id": "s2:Snippet"
+    },
+    "snippet": {
+      "@id": "s2:snippetText"
+    },
+    "score": {
+      "@id": "s2:relevanceScore",
+      "@type": "schema:Number"
+    }
+  }
+}
