@@ -4,12 +4,14 @@
   "url": "https://medium.com/ai2-blog/semantic-scholar/home",
   "feeds": [
     {
-      "name": "AI2 Blog on Medium",
-      "rss": "https://medium.com/feed/ai2-blog",
-      "url": "https://medium.com/ai2-blog",
-      "description": "Official blog of the Allen Institute for AI, publisher of Semantic Scholar research and product updates.",
-      "last_fetched": null,
-      "posts": []
+      "source": "https://github.com/allenai/s2-folks",
+      "feed_url": "https://github.com/allenai/s2-folks",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
-  ]
+  ],
+  "repo": "semantic-scholar",
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
