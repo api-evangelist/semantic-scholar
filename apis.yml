@@ -11,7 +11,7 @@ description: >
   allowance. Semantic Scholar supports AI agent integrations through multiple community-built
   MCP servers that expose its academic graph to LLM-based toolchains.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Academic
   - Research
