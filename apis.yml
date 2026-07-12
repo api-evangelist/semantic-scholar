@@ -77,6 +77,10 @@ apis:
       - type: OpenAPI
         url: openapi/semantic-scholar-datasets-openapi.yml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/semantic-scholar-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/semantic-scholar-domain-security.yml
   - type: Website
     url: https://www.semanticscholar.org
   - type: Documentation
