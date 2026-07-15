@@ -1,0 +1,235 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/semantic-scholar-academic-graph-openapi.yml, openapi/semantic-scholar-datasets-openapi.yml,
+  openapi/semantic-scholar-recommendations-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 20
+  by_action_class:
+    acting: 3
+    connected: 17
+  by_consequence:
+    write: 3
+    read: 17
+  human_in_the_loop_required: 0
+operations:
+- path: /author/batch
+  method: post
+  operationId: post_graph_get_authors
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /author/search
+  method: get
+  operationId: get_graph_get_author_search
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /author/{author_id}
+  method: get
+  operationId: get_graph_get_author
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /author/{author_id}/papers
+  method: get
+  operationId: get_graph_get_author_papers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/autocomplete
+  method: get
+  operationId: get_graph_get_paper_autocomplete
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/batch
+  method: post
+  operationId: post_graph_get_papers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /paper/search
+  method: get
+  operationId: get_graph_paper_relevance_search
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/search/bulk
+  method: get
+  operationId: get_graph_paper_bulk_search
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/search/match
+  method: get
+  operationId: get_graph_paper_title_search
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/{paper_id}
+  method: get
+  operationId: get_graph_get_paper
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/{paper_id}/authors
+  method: get
+  operationId: get_graph_get_paper_authors
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/{paper_id}/citations
+  method: get
+  operationId: get_graph_get_paper_citations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /paper/{paper_id}/references
+  method: get
+  operationId: get_graph_get_paper_references
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippet/search
+  method: get
+  operationId: get_snippet_search
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /diffs/{start_release_id}/to/{end_release_id}/{dataset_name}
+  method: get
+  operationId: get_diff
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /release/
+  method: get
+  operationId: get_releases
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /release/{release_id}
+  method: get
+  operationId: get_release
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /release/{release_id}/dataset/{dataset_name}
+  method: get
+  operationId: get_dataset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /papers/
+  method: post
+  operationId: post_papers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /papers/forpaper/{paper_id}
+  method: get
+  operationId: get_papers_for_paper
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

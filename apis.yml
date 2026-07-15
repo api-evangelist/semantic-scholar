@@ -77,6 +77,8 @@ apis:
       - type: OpenAPI
         url: openapi/semantic-scholar-datasets-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/semantic-scholar-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/semantic-scholar-vulnerability-disclosure.yml
   - type: DomainSecurity
