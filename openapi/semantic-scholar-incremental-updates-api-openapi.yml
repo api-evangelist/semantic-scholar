@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  title: Academic Graph Author Data Incremental Updates API
+  version: '1.0'
+  description: "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        "
+servers:
+- url: https://api.semanticscholar.org/graph/v1
+tags:
+- name: Incremental Updates
+paths:
+  /diffs/{start_release_id}/to/{end_release_id}/{dataset_name}:
+    get:
+      summary: Download Links for Incremental Diffs
+      operationId: get_diff
+      tags:
+      - Incremental Updates
+      description: "Full datasets can be updated from one release to another to avoid\ndownloading and processing data that hasn't changed. This method returns\na list of all the \"diffs\" that are required to catch a given dataset up\nfrom its current release to a newer one.\n\nEach \"diff\" represents changes between two sequential releases, and\ncontains two lists of files, an \"updated\" list and a \"deleted\" list.\nRecords in the \"updated\" list need to be inserted or replaced by their\nprimary key. Records in the \"deleted\" list should be removed.\n\nExample code for updating a database or key/value store:\n\n    difflist = requests.get('https://api.semanticscholar.org/datasets/v1/diffs/2023-08-01/to/latest/papers').json()\n    for diff in difflist['diffs']:\n        for url in diff['update_files']:\n            for json_line in requests.get(url).iter_lines():\n                record = json.loads(json_line)\n                datastore.upsert(record['corpusid'], record)\n        for url in diff['delete_files']:\n            for json_line in requests.get(url).iter_lines():\n                record = json.loads(json_line)\n                datastore.delete(record['corpusid'])\n\nExample code for updating via a join in Spark:\n\n    current = sc.textFile('s3://curr-dataset-location').map(json.loads).keyBy(lambda x: x['corpusid'])\n    updates = sc.textFile('s3://diff-updates-location').map(json.loads).keyBy(lambda x: x['corpusid'])\n    deletes = sc.textFile('s3://diff-deletes-location').map(json.loads).keyBy(lambda x: x['corpusid'])\n\n    updated = current.fullOuterJoin(updates).mapValues(lambda x: x[1] if x[1] is not None else x[0])\n    updated = updated.fullOuterJoin(deletes).mapValues(lambda x: None if x[1] is not None else x[0]).filter(lambda x: x[1] is not None)\n    updated.values().map(json.dumps).saveAsTextFile('s3://updated-dataset-location')"
+      responses:
+        '200':
+          description: List of download links for one dataset between given releases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset%20Diff%20List'

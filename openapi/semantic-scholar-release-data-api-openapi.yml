@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Academic Graph Author Data Release Data API
+  version: '1.0'
+  description: "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        "
+servers:
+- url: https://api.semanticscholar.org/graph/v1
+tags:
+- name: Release Data
+paths:
+  /release/:
+    get:
+      summary: List of Available Releases
+      operationId: get_releases
+      tags:
+      - Release Data
+      description: Releases are identified by a date stamp such as "2023-08-01". Each release contains full data for each dataset.
+      responses:
+        '200':
+          description: List of Available Releases
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  description: Release ids in the form of date stamps
+                  example: '2022-01-17'
+  /release/{release_id}:
+    get:
+      summary: List of Datasets in a Release
+      operationId: get_release
+      tags:
+      - Release Data
+      description: Metadata describing a particular release, including a list of datasets available.
+      responses:
+        '200':
+          description: Contents of the release with the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release%20Metadata'
+  /release/{release_id}/dataset/{dataset_name}:
+    get:
+      summary: Download Links for a Dataset
+      operationId: get_dataset
+      tags:
+      - Release Data
+      description: 'Datasets are partitioned and stored on S3. Clients can retrieve them by requesting this list
+
+        of pre-signed download urls and fetching all the partitions.'
+      responses:
+        '200':
+          description: Description and download links for the given dataset within the given release
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset%20Metadata'

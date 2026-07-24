@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Academic Graph Author Data Paper Recommendations API
+  version: '1.0'
+  description: "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        "
+servers:
+- url: https://api.semanticscholar.org/graph/v1
+tags:
+- name: Paper Recommendations
+paths:
+  /papers/:
+    post:
+      summary: Get recommended papers for lists of positive and negative example papers
+      operationId: post_papers
+      tags:
+      - Paper Recommendations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paper%20Input'
+      responses:
+        '404':
+          description: Input papers not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '400':
+          description: Bad query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '200':
+          description: List of recommendations with default or requested fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paper%20Recommendations'
+  /papers/forpaper/{paper_id}:
+    get:
+      summary: Get recommended papers for a single positive example paper
+      operationId: get_papers_for_paper
+      tags:
+      - Paper Recommendations
+      responses:
+        '404':
+          description: Input papers not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '400':
+          description: Bad query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '200':
+          description: List of recommendations with default or requested fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paper%20Recommendations'
+components:
+  schemas:
+    Error400:
+      properties:
+        error:
+          type: string
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
+          example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
+      type: object
+    Error404:
+      properties:
+        error:
+          type: string
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Paper/Author/Object not found\"</code></li>\n    <li><code>\"Paper/Author/Object with id ### not found\"</code></li>\n</ul>"
+          example: Requested object not found
+      type: object

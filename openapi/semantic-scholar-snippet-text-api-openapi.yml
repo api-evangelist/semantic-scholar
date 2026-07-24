@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  title: Academic Graph Author Data Snippet Text API
+  version: '1.0'
+  description: "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        "
+servers:
+- url: https://api.semanticscholar.org/graph/v1
+tags:
+- name: Snippet Text
+paths:
+  /snippet/search:
+    get:
+      summary: Text snippet search
+      operationId: get_snippet_search
+      tags:
+      - Snippet Text
+      description: "Return the text snippets that most closely match the query. Text snippets are excerpts of approximately 500 words, drawn from a paper's title, abstract, and body text, but excluding figure captions and the bibliography.\nIt will return the highest ranked snippet first, as well as some basic data about the paper it was found in.\nExamples:\n<ul>\n  <li><code>https://api.semanticscholar.org/graph/v1/snippet/search?query=The literature graph is a property graph with directed edges&limit=1</code></li>\n  <ul>\n    <li>Returns a single snippet that is the highest ranked match.</li>\n    <li>Each snippet has text, snippetKind, section, annotation data, and score. As well as the following data about the paper it comes from: corpusId, title, authors, and openAccessInfo.</li>\n  </ul>\n</ul>\n  <br>\n    Limitations:\n    <ul>\n        <li>You must include a query.</li>\n        <li>If you don't set a limit, it will automatically return 10 results.</li>\n        <li>The max limit allowed is 1000.</li>\n    </ul>\n</ul>"
+      responses:
+        '400':
+          description: Bad query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '200':
+          description: Best snippet match with default fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnippetMatch'
+components:
+  schemas:
+    SnippetMatch:
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snippet Match'
+        retrievalVersion:
+          type: string
+          description: A rough representation of the retrieval approach we've used to get the results. We'll usually bump this if we change something about how we get results. Note that the same retrievalVersion value doesn't guarantee that you'll get the same results for the same query at different times, and a different retrievalVersion value doesn't always mean you'll get different results.
+      type: object
+    paper:
+      properties:
+        corpusId:
+          type: string
+          description: Semantic Scholar’s secondary unique identifier for a paper.
+          example: '19170988'
+        title:
+          type: string
+          description: Title of the paper.
+          example: Construction of the Literature Graph in Semantic Scholar
+        authors:
+          type: array
+          items:
+            type: string
+            description: Authors of the paper.
+            example:
+            - Bridger Waleed Ammar
+            - Dirk Groeneveld
+            - Chandra Bhagavatula
+            - Iz Beltagy
+            - Miles Crawford
+            - Doug Downey
+            - Jason Dunkelberger
+            - Ahmed Elgohary
+            - Sergey Feldman
+            - Vu A. Ha
+            - Rodney Michael Kinney
+            - Sebastian Kohlmeier
+            - Kyle Lo
+            - Tyler C. Murray
+            - Hsu-Han Ooi
+            - Matthew E. Peters
+            - Joanna L. Power
+            - Sam Skjonsberg
+            - Lucy Lu Wang
+            - Christopher Wilhelm
+            - Zheng Yuan
+            - Madeleine van Zuylen
+            - Oren Etzioni
+        openAccessInfo:
+          $ref: '#/components/schemas/openAccessInfo'
+      type: object
+    Error400:
+      properties:
+        error:
+          type: string
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
+          example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
+      type: object
+    snippet:
+      properties:
+        text:
+          type: string
+          description: The direct quote or snippet from the paper relevant to the query.
+          example: "In this paper, we discuss the construction of a graph, providing a symbolic representation of the scientific literature. We describe deployed models for identifying authors, references and entities in the paper text, and provide experimental results to evaluate the performance of each model. \n\nThree research directions follow from this work and other similar projects, e.g., Hahn-Powell et al. (2017); Wu et al. (2014): i) improving quality and enriching content of the literature graph (e.g., ontology matching and knowledge base population). ii) aggregating domain-specific extractions across many papers to enable a better understanding of the literature as a whole (e.g., identifying demographic biases in clinical trial participants and summarizing empirical results on important tasks). iii) exploring the literature via natural language interfaces. \n\nIn order to help future research efforts, we make the following resources publicly available: metadata for over 20 million papers,10 meaningful citations dataset,11 models for figure and table extraction,12 models for predicting citations in a paper draft 13 and models for extracting paper metadata,14 among other resources."
+        snippetKind:
+          type: string
+          description: 'Where the snippet is located, options are: title, abstract, or body. '
+          example: body
+        section:
+          type: string
+          description: Only applies to snippets from the body, refers to the section of the paper where the snippet is located.
+          example: Conclusion and Future Work
+        snippetOffset:
+          type: object
+          description: The location of the snippet within the paper.
+          example:
+            start: 24506
+            end: 25694
+        annotations:
+          $ref: '#/components/schemas/annotations'
+      type: object
+    annotations:
+      properties:
+        sentences:
+          type: array
+          items:
+            $ref: '#/components/schemas/sentence'
+        refMentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/refMention'
+      type: object
+    sentence:
+      properties:
+        start:
+          type: integer
+          example: 0
+        end:
+          type: integer
+          example: 120
+      type: object
+    openAccessInfo:
+      properties:
+        license:
+          type: string
+          description: The license attached to the paper.
+          example: CCBY
+        status:
+          type: string
+          description: Paper's status (the type of open access https://en.wikipedia.org/wiki/Open_access#Colour_naming_system)
+          example: HYBRID
+        disclaimer:
+          type: string
+          description: A disclaimer about the open access use of this paper.
+          example: 'Notice: This snippet is extracted from the open access paper or abstract available at https://arxiv.org/abs/1805.02262, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.'
+      type: object
+    refMention:
+      properties:
+        start:
+          type: integer
+          example: 377
+        end:
+          type: integer
+          example: 402
+        matchedPaperCorpusId:
+          type: string
+          example: '7377848'
+      type: object
+    Snippet Match:
+      properties:
+        snippet:
+          $ref: '#/components/schemas/snippet'
+        score:
+          type: number
+          example: 0.561970777028496
+        paper:
+          $ref: '#/components/schemas/paper'
+      type: object
