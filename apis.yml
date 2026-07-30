@@ -11,7 +11,19 @@ description: >
   allowance. Semantic Scholar supports AI agent integrations through multiple community-built
   MCP servers that expose its academic graph to LLM-based toolchains.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/semantic-scholar.png
 tags:
   - Academic
   - Research
@@ -26,56 +38,92 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - name: Semantic Scholar Academic Graph API
-    description: >
-      RESTful API providing access to 214M+ academic papers, 79M authors, 2.49B citations,
-      venues, and SPECTER2 vector embeddings. Supports single-item lookups, keyword search,
-      bulk retrieval, and citation/reference traversal.
-    humanURL: https://www.semanticscholar.org/product/api
-    baseURL: https://api.semanticscholar.org/graph/v1
-    tags:
-      - Papers
-      - Authors
-      - Citations
-      - Search
-      - Embeddings
-    properties:
-      - type: Documentation
-        url: https://api.semanticscholar.org/api-docs/
-      - type: OpenAPI
-        url: openapi/semantic-scholar-academic-graph-openapi.yml
-  - name: Semantic Scholar Recommendations API
-    description: >
-      Returns recommended papers similar to a given publication or aligned with a learned
-      model of a researcher's topical interests. Supports both single-paper and multi-paper
-      positive/negative input modes.
-    humanURL: https://www.semanticscholar.org/product/api
-    baseURL: https://api.semanticscholar.org/recommendations/v1
-    tags:
-      - Recommendations
-      - Papers
-      - Machine Learning
-    properties:
-      - type: Documentation
-        url: https://api.semanticscholar.org/api-docs/recommendations
-      - type: OpenAPI
-        url: openapi/semantic-scholar-recommendations-openapi.yml
-  - name: Semantic Scholar Datasets API
-    description: >
-      Provides downloadable bulk snapshots of the full Semantic Scholar academic graph,
-      updated monthly. Supports incremental diff downloads between releases. Requires
-      an API key for authentication.
-    humanURL: https://www.semanticscholar.org/product/api
-    baseURL: https://api.semanticscholar.org/datasets/v1
-    tags:
-      - Datasets
-      - Bulk Download
-      - Corpus
-    properties:
-      - type: Documentation
-        url: https://api.semanticscholar.org/api-docs/
-      - type: OpenAPI
-        url: openapi/semantic-scholar-datasets-openapi.yml
+- aid: semantic-scholar:semantic-scholar-author-data-api
+  name: Semantic Scholar Author Data API
+  description: The Author Data API from Semantic Scholar — 4 operation(s) for author data.
+  humanURL: https://www.semanticscholar.org/product/api
+  baseURL: https://api.semanticscholar.org/graph/v1
+  tags:
+  - Author Data
+  properties:
+  - type: OpenAPI
+    url: openapi/semantic-scholar-author-data-api-openapi.yml
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/recommendations
+- aid: semantic-scholar:semantic-scholar-incremental-updates-api
+  name: Semantic Scholar Incremental Updates API
+  description: >-
+    The Incremental Updates API from Semantic Scholar — 1 operation(s) for incremental updates.
+  humanURL: https://www.semanticscholar.org/product/api
+  baseURL: https://api.semanticscholar.org/graph/v1
+  tags:
+  - Incremental Updates
+  properties:
+  - type: OpenAPI
+    url: openapi/semantic-scholar-incremental-updates-api-openapi.yml
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/recommendations
+- aid: semantic-scholar:semantic-scholar-paper-data-api
+  name: Semantic Scholar Paper Data API
+  description: The Paper Data API from Semantic Scholar — 9 operation(s) for paper data.
+  humanURL: https://www.semanticscholar.org/product/api
+  baseURL: https://api.semanticscholar.org/graph/v1
+  tags:
+  - Paper Data
+  properties:
+  - type: OpenAPI
+    url: openapi/semantic-scholar-paper-data-api-openapi.yml
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/recommendations
+- aid: semantic-scholar:semantic-scholar-paper-recommendations-api
+  name: Semantic Scholar Paper Recommendations API
+  description: >-
+    The Paper Recommendations API from Semantic Scholar — 2 operation(s) for paper recommendations.
+  humanURL: https://www.semanticscholar.org/product/api
+  baseURL: https://api.semanticscholar.org/graph/v1
+  tags:
+  - Paper Recommendations
+  properties:
+  - type: OpenAPI
+    url: openapi/semantic-scholar-paper-recommendations-api-openapi.yml
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/recommendations
+- aid: semantic-scholar:semantic-scholar-release-data-api
+  name: Semantic Scholar Release Data API
+  description: The Release Data API from Semantic Scholar — 3 operation(s) for release data.
+  humanURL: https://www.semanticscholar.org/product/api
+  baseURL: https://api.semanticscholar.org/graph/v1
+  tags:
+  - Release Data
+  properties:
+  - type: OpenAPI
+    url: openapi/semantic-scholar-release-data-api-openapi.yml
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/recommendations
+- aid: semantic-scholar:semantic-scholar-snippet-text-api
+  name: Semantic Scholar Snippet Text API
+  description: The Snippet Text API from Semantic Scholar — 1 operation(s) for snippet text.
+  humanURL: https://www.semanticscholar.org/product/api
+  baseURL: https://api.semanticscholar.org/graph/v1
+  tags:
+  - Snippet Text
+  properties:
+  - type: OpenAPI
+    url: openapi/semantic-scholar-snippet-text-api-openapi.yml
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/
+  - type: Documentation
+    url: https://api.semanticscholar.org/api-docs/recommendations
 common:
   - type: AgenticAccess
     url: agentic-access/semantic-scholar-agentic-access.yml
