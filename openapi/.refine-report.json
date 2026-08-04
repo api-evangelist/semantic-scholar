@@ -1,0 +1,30 @@
+{
+  "provider": "semantic-scholar",
+  "sources": [
+    "semantic-scholar-author-data-api-openapi.yml",
+    "semantic-scholar-incremental-updates-api-openapi.yml",
+    "semantic-scholar-paper-data-api-openapi.yml",
+    "semantic-scholar-paper-recommendations-api-openapi.yml",
+    "semantic-scholar-release-data-api-openapi.yml",
+    "semantic-scholar-snippet-text-api-openapi.yml"
+  ],
+  "outputs": [
+    "semantic-scholar-author-data-api-openapi.yml",
+    "semantic-scholar-incremental-updates-api-openapi.yml",
+    "semantic-scholar-paper-data-api-openapi.yml",
+    "semantic-scholar-paper-recommendations-api-openapi.yml",
+    "semantic-scholar-release-data-api-openapi.yml",
+    "semantic-scholar-snippet-text-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "semantic-scholar-incremental-updates-api-openapi.yml: dangling $ref: #/components/schemas/Dataset%20Diff%20List",
+    "semantic-scholar-paper-recommendations-api-openapi.yml: dangling $ref: #/components/schemas/Paper%20Input",
+    "semantic-scholar-paper-recommendations-api-openapi.yml: dangling $ref: #/components/schemas/Paper%20Recommendations",
+    "semantic-scholar-release-data-api-openapi.yml: dangling $ref: #/components/schemas/Dataset%20Metadata",
+    "semantic-scholar-release-data-api-openapi.yml: dangling $ref: #/components/schemas/Release%20Metadata"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
