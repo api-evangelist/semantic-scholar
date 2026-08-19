@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Academic Graph Author Data Snippet Text API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snippet Text",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Text snippet search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/snippet/search"
+          },
+          "docs": "Return the text snippets that most closely match the query. Text snippets are excerpts of approximately 500 words, drawn from a paper's title, abstract, and body text, but excluding figure captions and the bibliography.\nIt will return the highest ranked snippet first, as well as some basic data about the paper it was found in.\nExamples:\n<ul>\n  <li><code>https://api.semanticscholar.org/graph/v1/snippet/search?query=The literature graph is a property graph with directed edges&limit=1</code></li>\n "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

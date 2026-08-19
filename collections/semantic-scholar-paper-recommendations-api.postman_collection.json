@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "6f3edc88-7cc2-469f-aa20-da43626ec5f3",
+      "name": "Paper Recommendations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "047b982b-82e5-487f-9c76-ef3f10e0e1f6",
+          "name": "Get recommended papers for lists of positive and negative example papers",
+          "request": {
+            "name": "Get recommended papers for lists of positive and negative example papers",
+            "description": {},
+            "url": {
+              "path": [
+                "papers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bb51142-2ef4-436d-a6e5-5c32ea74a729",
+              "name": "List of recommendations with default or requested fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "papers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "315ea56b-b39d-4026-b23f-5883facb5598",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "papers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "261be13e-9382-46d5-8547-5224cc421c1c",
+              "name": "Input papers not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "papers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Requested object not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e554e6f-bda6-431d-ae82-18ea55fcdce7",
+          "name": "Get recommended papers for a single positive example paper",
+          "request": {
+            "name": "Get recommended papers for a single positive example paper",
+            "description": {},
+            "url": {
+              "path": [
+                "papers",
+                "forpaper",
+                ":paper_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "002b7c23-e717-45df-a696-6657e810904c",
+              "name": "List of recommendations with default or requested fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "papers",
+                    "forpaper",
+                    ":paper_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd102552-6af8-4c60-8216-f8e1a711697d",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "papers",
+                    "forpaper",
+                    ":paper_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5db227b1-8912-45cc-bc75-f41b6e6b0c46",
+              "name": "Input papers not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "papers",
+                    "forpaper",
+                    ":paper_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Requested object not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.semanticscholar.org/graph/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98275900-e399-4b64-8ef9-5172bc749d7f",
+    "name": "Academic Graph Author Data Paper Recommendations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        ",
+      "type": "text/plain"
+    }
+  }
+}

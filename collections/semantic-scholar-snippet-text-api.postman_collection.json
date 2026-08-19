@@ -1,0 +1,140 @@
+{
+  "item": [
+    {
+      "id": "3c1180bb-b38b-415a-ac02-0f2f0dc464ca",
+      "name": "Snippet Text",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e5bf985-ce7e-4348-831c-0f6456db0818",
+          "name": "Text snippet search",
+          "request": {
+            "name": "Text snippet search",
+            "description": {
+              "content": "Return the text snippets that most closely match the query. Text snippets are excerpts of approximately 500 words, drawn from a paper's title, abstract, and body text, but excluding figure captions and the bibliography.\nIt will return the highest ranked snippet first, as well as some basic data about the paper it was found in.\nExamples:\n<ul>\n  <li><code>https://api.semanticscholar.org/graph/v1/snippet/search?query=The literature graph is a property graph with directed edges&limit=1</code></li>\n  <ul>\n    <li>Returns a single snippet that is the highest ranked match.</li>\n    <li>Each snippet has text, snippetKind, section, annotation data, and score. As well as the following data about the paper it comes from: corpusId, title, authors, and openAccessInfo.</li>\n  </ul>\n</ul>\n  <br>\n    Limitations:\n    <ul>\n        <li>You must include a query.</li>\n        <li>If you don't set a limit, it will automatically return 10 results.</li>\n        <li>The max limit allowed is 1000.</li>\n    </ul>\n</ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snippet",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5aeee7c4-0a95-45dd-ba6c-f81437d6fc22",
+              "name": "Best snippet match with default fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snippet",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"snippet\": {\n        \"text\": \"In this paper, we discuss the construction of a graph, providing a symbolic representation of the scientific literature. We describe deployed models for identifying authors, references and entities in the paper text, and provide experimental results to evaluate the performance of each model. \\n\\nThree research directions follow from this work and other similar projects, e.g., Hahn-Powell et al. (2017); Wu et al. (2014): i) improving quality and enriching content of the literature graph (e.g., ontology matching and knowledge base population). ii) aggregating domain-specific extractions across many papers to enable a better understanding of the literature as a whole (e.g., identifying demographic biases in clinical trial participants and summarizing empirical results on important tasks). iii) exploring the literature via natural language interfaces. \\n\\nIn order to help future research efforts, we make the following resources publicly available: metadata for over 20 million papers,10 meaningful citations dataset,11 models for figure and table extraction,12 models for predicting citations in a paper draft 13 and models for extracting paper metadata,14 among other resources.\",\n        \"snippetKind\": \"body\",\n        \"section\": \"Conclusion and Future Work\",\n        \"snippetOffset\": {\n          \"start\": 24506,\n          \"end\": 25694\n        },\n        \"annotations\": {\n          \"sentences\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"refMentions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"score\": 0.561970777028496,\n      \"paper\": {\n        \"corpusId\": \"19170988\",\n        \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n        \"authors\": [\n          \"string\",\n          \"string\"\n        ],\n        \"openAccessInfo\": {\n          \"license\": \"CCBY\",\n          \"status\": \"HYBRID\",\n          \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://arxiv.org/abs/1805.02262, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n        }\n      }\n    },\n    {\n      \"snippet\": {\n        \"text\": \"In this paper, we discuss the construction of a graph, providing a symbolic representation of the scientific literature. We describe deployed models for identifying authors, references and entities in the paper text, and provide experimental results to evaluate the performance of each model. \\n\\nThree research directions follow from this work and other similar projects, e.g., Hahn-Powell et al. (2017); Wu et al. (2014): i) improving quality and enriching content of the literature graph (e.g., ontology matching and knowledge base population). ii) aggregating domain-specific extractions across many papers to enable a better understanding of the literature as a whole (e.g., identifying demographic biases in clinical trial participants and summarizing empirical results on important tasks). iii) exploring the literature via natural language interfaces. \\n\\nIn order to help future research efforts, we make the following resources publicly available: metadata for over 20 million papers,10 meaningful citations dataset,11 models for figure and table extraction,12 models for predicting citations in a paper draft 13 and models for extracting paper metadata,14 among other resources.\",\n        \"snippetKind\": \"body\",\n        \"section\": \"Conclusion and Future Work\",\n        \"snippetOffset\": {\n          \"start\": 24506,\n          \"end\": 25694\n        },\n        \"annotations\": {\n          \"sentences\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"refMentions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"score\": 0.561970777028496,\n      \"paper\": {\n        \"corpusId\": \"19170988\",\n        \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n        \"authors\": [\n          \"string\",\n          \"string\"\n        ],\n        \"openAccessInfo\": {\n          \"license\": \"CCBY\",\n          \"status\": \"HYBRID\",\n          \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://arxiv.org/abs/1805.02262, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n        }\n      }\n    }\n  ],\n  \"retrievalVersion\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a5a2f54-092e-468e-b81d-677a4caf094b",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snippet",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.semanticscholar.org/graph/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f6819129-fa5f-43bc-b99d-ea1469c4be9c",
+    "name": "Academic Graph Author Data Snippet Text API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        ",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Academic Graph Author Data Release Data API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Release Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of Available Releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/release/"
+          },
+          "docs": "Releases are identified by a date stamp such as \"2023-08-01\". Each release contains full data for each dataset."
+        },
+        {
+          "info": {
+            "name": "List of Datasets in a Release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/release/:release_id"
+          },
+          "docs": "Metadata describing a particular release, including a list of datasets available."
+        },
+        {
+          "info": {
+            "name": "Download Links for a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/release/:release_id/dataset/:dataset_name"
+          },
+          "docs": "Datasets are partitioned and stored on S3. Clients can retrieve them by requesting this list\nof pre-signed download urls and fetching all the partitions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

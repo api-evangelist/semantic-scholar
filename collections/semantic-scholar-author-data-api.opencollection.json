@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Academic Graph Author Data API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Author Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get details for multiple authors at once",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.semanticscholar.org/graph/v1/author/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "* Fields is a single-value string parameter, not a multi-value one.\n* It is a query parameter, not to be submitted in the POST request's body.\n\nIn python:\n\n    r = requests.post(\n        'https://api.semanticscholar.org/graph/v1/author/batch',\n        params={'fields': 'name,hIndex,citationCount'},\n        json={\"ids\":[\"1741101\", \"1780531\"]}\n    )\n    print(json.dumps(r.json(), indent=2))\n\n    [\n      {\n        \"authorId\": \"1741101\",\n        \"name\": \"Oren Etzioni\",\n        \"citationCount\": 34803"
+        },
+        {
+          "info": {
+            "name": "Search for authors by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/author/search"
+          },
+          "docs": "Specifying <code>papers</code> fields in the request will return all papers linked to each author in the results. Set a <code>limit</code> on the search results to reduce output size and latency.<br><br>\nExamples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/search?query=adam+smith</code></li>\n    <ul>\n        <li>Returns with total=490, offset=0, next=100, and data is a list of 100 authors.</li>\n        <li>Each author has their authorId and name. </li>\n    </ul>\n    <li><"
+        },
+        {
+          "info": {
+            "name": "Details about an author",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/author/:author_id"
+          },
+          "docs": "Examples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101</code></li>\n    <ul>\n        <li>Returns the author's authorId and name.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101?fields=url,papers</code></li>\n    <ul>\n        <li>Returns the author's authorId, url, and list of papers.  </li>\n        <li>Each paper has its paperId plus its title.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101?fie"
+        },
+        {
+          "info": {
+            "name": "Details about an author's papers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/author/:author_id/papers"
+          },
+          "docs": "Fetch the papers of an author in batches.<br>\nOnly retrieves the most recent 10,000 citations/references for papers belonging to the batch.<br>\nTo retrieve the full set of citations for a paper,\nuse the /paper/{paper_id}/citations endpoint\n<br><br>\nExamples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101/papers</code></li>\n    <ul>\n        <li>Return with offset=0, and data is a list of the first 100 papers.</li>\n        <li>Each paper has its paperId and title.</li>\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

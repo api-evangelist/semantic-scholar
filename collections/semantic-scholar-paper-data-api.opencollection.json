@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Academic Graph Author Data Paper Data API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Paper Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Suggest paper query completions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/autocomplete"
+          },
+          "docs": "To support interactive query-completion, return minimal information about papers matching a partial query\n\nExample:\n<code>https://api.semanticscholar.org/graph/v1/paper/autocomplete?query=semanti</code>"
+        },
+        {
+          "info": {
+            "name": "Get details for multiple papers at once",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "* Fields is a single-value string parameter, not a multi-value one.\n* It is a query parameter, not to be submitted in the POST request's body.\n\nIn python:\n\n    r = requests.post(\n        'https://api.semanticscholar.org/graph/v1/paper/batch',\n        params={'fields': 'referenceCount,citationCount,title'},\n        json={\"ids\": [\"649def34f8be52c8b66281af98ae884c09aef38b\", \"ARXIV:2106.15928\"]}\n    )\n    print(json.dumps(r.json(), indent=2))\n\n    [\n      {\n        \"paperId\": \"649def34f8be52c8b66281"
+        },
+        {
+          "info": {
+            "name": "Paper relevance search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/search"
+          },
+          "docs": "Examples:\n<ul>\n  <li><code>https://api.semanticscholar.org/graph/v1/paper/search?query=covid+vaccination&offset=100&limit=3</code></li>\n  <ul>\n    <li>Returns with total=576278, offset=100, next=103, and data is a list of 3 papers.</li>\n    <li>Each paper has its paperId and title.  </li>\n  </ul>\n  <li><code>https://api.semanticscholar.org/graph/v1/paper/search?query=covid&fields=url,abstract,authors</code></li>\n  <ul>\n    <li>Returns with total=639637, offset=0, next=100, and data is a list of "
+        },
+        {
+          "info": {
+            "name": "Paper bulk search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
+          },
+          "docs": "Behaves similarly to <code>/paper/search</code>, but is intended for bulk retrieval of basic paper data without search relevance:\n<ul>\n<li>Text query is optional and supports boolean logic for document matching.</li>\n<li>Papers can be filtered using various criteria.</li>\n<li>Up to 1,000 papers will be returned in each call.</li>\n<li>If there are more matching papers, a continuation \"token\" will be present.</li>\n<li>The query can be repeated with the token param added to efficiently continue fet"
+        },
+        {
+          "info": {
+            "name": "Paper title search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/search/match"
+          },
+          "docs": "Behaves similarly to <code>/paper/search</code>, but is intended for retrieval of a single paper based on closest title match to given query.\nExamples:\n<ul>\n  <li><code>https://api.semanticscholar.org/graph/v1/paper/search/match?query=Construction of the Literature Graph in Semantic Scholar</code></li>\n  <ul>\n    <li>Returns a single paper that is the closest title match.</li>\n    <li>Each paper has its paperId, title, and matchScore as well as any other requested fields.</li>\n  </ul>\n  <li><cod"
+        },
+        {
+          "info": {
+            "name": "Details about a paper",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/:paper_id"
+          },
+          "docs": "Examples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/paper/649def34f8be52c8b66281af98ae884c09aef38b</code></li>\n    <ul>\n        <li>Returns a paper with its paperId and title.  </li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/paper/649def34f8be52c8b66281af98ae884c09aef38b?fields=url,year,authors</code></li>\n    <ul>\n        <li>Returns the paper's paperId, url, year, and list of authors.  </li>\n        <li>Each author has authorId and name.</li>\n    </ul>\n"
+        },
+        {
+          "info": {
+            "name": "Details about a paper's authors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/:paper_id/authors"
+          },
+          "docs": "Examples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/paper/649def34f8be52c8b66281af98ae884c09aef38b/authors</code></li>\n    <ul>\n        <li>Returns with offset=0, and data is a list of all 3 authors.</li>\n        <li>Each author has their authorId and name</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/paper/649def34f8be52c8b66281af98ae884c09aef38b/authors?fields=affiliations,papers&limit=2</code></li>\n    <ul>\n        <li>Returns with offset=0, next=2, a"
+        },
+        {
+          "info": {
+            "name": "Details about a paper's citations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/:paper_id/citations"
+          },
+          "docs": "Fetch details about the papers that cite this paper (i.e. papers in whose bibliography this paper appears)\n<br><br>\nExamples:\n<ul>\n    <li>Let's suppose that the paper in the examples below has 1600 citations...</li>\n    <li><code>https://api.semanticscholar.org/graph/v1/paper/649def34f8be52c8b66281af98ae884c09aef38b/citations</code></li>\n    <ul>\n        <li>Returns with offset=0, next=100, and data is a list of 100 citations.</li>\n        <li>Each citation has a citingPaper which contains its "
+        },
+        {
+          "info": {
+            "name": "Details about a paper's references",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/paper/:paper_id/references"
+          },
+          "docs": "Fetch details about the papers cited by this paper (i.e. appearing in this paper's bibliography)\n<br><br>\nExamples:\n<ul>\n    <li>Let's suppose that the paper in the examples below has 1600 references...</li>\n    <li><code>https://api.semanticscholar.org/graph/v1/paper/649def34f8be52c8b66281af98ae884c09aef38b/references</code></li>\n    <ul>\n        <li>Returns with offset=0, next=100, and data is a list of 100 references.</li>\n        <li>Each reference has a citedPaper which contains its paperId"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Academic Graph Author Data Incremental Updates API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Incremental Updates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download Links for Incremental Diffs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/diffs/:start_release_id/to/:end_release_id/:dataset_name"
+          },
+          "docs": "Full datasets can be updated from one release to another to avoid\ndownloading and processing data that hasn't changed. This method returns\na list of all the \"diffs\" that are required to catch a given dataset up\nfrom its current release to a newer one.\n\nEach \"diff\" represents changes between two sequential releases, and\ncontains two lists of files, an \"updated\" list and a \"deleted\" list.\nRecords in the \"updated\" list need to be inserted or replaced by their\nprimary key. Records in the \"deleted\" l"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,252 @@
+{
+  "item": [
+    {
+      "id": "1659e91c-4579-4339-9f88-2c39a88011af",
+      "name": "Release Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f47c9f14-8e16-44f6-a08f-670c51237c10",
+          "name": "List of Available Releases",
+          "request": {
+            "name": "List of Available Releases",
+            "description": {
+              "content": "Releases are identified by a date stamp such as \"2023-08-01\". Each release contains full data for each dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "release",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3aaab202-4722-4aa2-a5a5-af00e7a2b53c",
+              "name": "List of Available Releases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "release",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"2022-01-17\",\n  \"2022-01-17\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9ce9600-88ef-4420-9aa2-3f082aa49fb1",
+          "name": "List of Datasets in a Release",
+          "request": {
+            "name": "List of Datasets in a Release",
+            "description": {
+              "content": "Metadata describing a particular release, including a list of datasets available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "release",
+                ":release_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fa488ce-2ac0-4db6-a5f8-86c9603b7a47",
+              "name": "Contents of the release with the given ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "release",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e064fc8c-e119-4fe8-a988-461a38476067",
+          "name": "Download Links for a Dataset",
+          "request": {
+            "name": "Download Links for a Dataset",
+            "description": {
+              "content": "Datasets are partitioned and stored on S3. Clients can retrieve them by requesting this list\nof pre-signed download urls and fetching all the partitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "release",
+                ":release_id",
+                "dataset",
+                ":dataset_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ad6a1f3-2ca0-4c83-b49d-ac3eaaf30944",
+              "name": "Description and download links for the given dataset within the given release",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "release",
+                    ":release_id",
+                    "dataset",
+                    ":dataset_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.semanticscholar.org/graph/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c859207d-d022-4599-bcc9-8540b57c08e9",
+    "name": "Academic Graph Author Data Release Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        ",
+      "type": "text/plain"
+    }
+  }
+}

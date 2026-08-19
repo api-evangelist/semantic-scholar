@@ -1,0 +1,569 @@
+{
+  "item": [
+    {
+      "id": "3e83212d-bf1b-42a4-a5f0-f9e978ea3c5b",
+      "name": "Author Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d012f17e-d934-4c2c-b507-658149831c41",
+          "name": "Get details for multiple authors at once",
+          "request": {
+            "name": "Get details for multiple authors at once",
+            "description": {
+              "content": "* Fields is a single-value string parameter, not a multi-value one.\n* It is a query parameter, not to be submitted in the POST request's body.\n\nIn python:\n\n    r = requests.post(\n        'https://api.semanticscholar.org/graph/v1/author/batch',\n        params={'fields': 'name,hIndex,citationCount'},\n        json={\"ids\":[\"1741101\", \"1780531\"]}\n    )\n    print(json.dumps(r.json(), indent=2))\n\n    [\n      {\n        \"authorId\": \"1741101\",\n        \"name\": \"Oren Etzioni\",\n        \"citationCount\": 34803,\n        \"hIndex\": 86\n      },\n      {\n        \"authorId\": \"1780531\",\n        \"name\": \"Daniel S. Weld\",\n        \"citationCount\": 35526,\n        \"hIndex\": 89\n      }\n    ]\n\nOther Examples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/batch</code></li>\n    <ul>\n        <li><code>{\"ids\":[\"1741101\", \"1780531\", \"48323507\"]}</code></li>\n        <li>Returns details for 3 authors.</li>\n        <li>Each author returns the field authorId and name if no other fields are specified.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/batch?fields=url,name,paperCount,papers,papers.title,papers.openAccessPdf</code></li>\n    <ul>\n        <li><code>{\"ids\":[\"1741101\", \"1780531\", \"48323507\"]}</code></li>\n        <li>Returns authorID, url, name, paperCount, and list of papers for 3 authors.</li>\n        <li>Each paper has its paperID, title, and link if available.</li>\n    </ul>\n</ul>\n<br>\nLimitations:\n<ul>\n    <li>Can only process 1,000 author ids at a time.</li>\n    <li>Can only return up to 10 MB of data at a time.</li>\n</ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "author",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ce7b957-7f97-43d6-84c0-e4c71f95eef8",
+              "name": "List of authors with default or requested fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"1741101\",\n    \"1741101\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authorId\": \"1741101\",\n  \"externalIds\": {\n    \"DBLP\": [\n      123\n    ]\n  },\n  \"url\": \"https://www.semanticscholar.org/author/1741101\",\n  \"name\": \"Oren Etzioni\",\n  \"affiliations\": [\n    \"Allen Institute for AI\"\n  ],\n  \"homepage\": \"https://allenai.org/\",\n  \"paperCount\": \"string\",\n  \"citationCount\": \"string\",\n  \"hIndex\": \"string\",\n  \"papers\": [\n    {\n      \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"corpusId\": 215416146,\n      \"externalIds\": {\n        \"MAG\": \"3015453090\",\n        \"DBLP\": \"conf/acl/LoWNKW20\",\n        \"ACL\": \"2020.acl-main.447\",\n        \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n        \"CorpusId\": 215416146\n      },\n      \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n      \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n      \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n      \"publicationVenue\": {\n        \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n        \"type\": \"conference\",\n        \"alternate_names\": [\n          \"Annu Meet Assoc Comput Linguistics\",\n          \"Meeting of the Association for Computational Linguistics\",\n          \"ACL\",\n          \"Meet Assoc Comput Linguistics\"\n        ],\n        \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n      },\n      \"year\": 1997,\n      \"referenceCount\": 59,\n      \"citationCount\": 453,\n      \"influentialCitationCount\": 90,\n      \"isOpenAccess\": true,\n      \"openAccessPdf\": {\n        \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n        \"status\": \"HYBRID\",\n        \"license\": \"CCBY\",\n        \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n      },\n      \"fieldsOfStudy\": [\n        \"Computer Science\"\n      ],\n      \"s2FieldsOfStudy\": [\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"external\"\n        },\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"s2-fos-model\"\n        },\n        {\n          \"category\": \"Mathematics\",\n          \"source\": \"s2-fos-model\"\n        }\n      ],\n      \"publicationTypes\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"publicationDate\": \"2024-04-29\",\n      \"journal\": {\n        \"volume\": \"40\",\n        \"pages\": \"116 - 135\",\n        \"name\": \"IETE Technical Review\"\n      },\n      \"citationStyles\": {\n        \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n      },\n      \"authors\": [\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        },\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        }\n      ]\n    },\n    {\n      \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"corpusId\": 215416146,\n      \"externalIds\": {\n        \"MAG\": \"3015453090\",\n        \"DBLP\": \"conf/acl/LoWNKW20\",\n        \"ACL\": \"2020.acl-main.447\",\n        \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n        \"CorpusId\": 215416146\n      },\n      \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n      \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n      \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n      \"publicationVenue\": {\n        \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n        \"type\": \"conference\",\n        \"alternate_names\": [\n          \"Annu Meet Assoc Comput Linguistics\",\n          \"Meeting of the Association for Computational Linguistics\",\n          \"ACL\",\n          \"Meet Assoc Comput Linguistics\"\n        ],\n        \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n      },\n      \"year\": 1997,\n      \"referenceCount\": 59,\n      \"citationCount\": 453,\n      \"influentialCitationCount\": 90,\n      \"isOpenAccess\": true,\n      \"openAccessPdf\": {\n        \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n        \"status\": \"HYBRID\",\n        \"license\": \"CCBY\",\n        \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n      },\n      \"fieldsOfStudy\": [\n        \"Computer Science\"\n      ],\n      \"s2FieldsOfStudy\": [\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"external\"\n        },\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"s2-fos-model\"\n        },\n        {\n          \"category\": \"Mathematics\",\n          \"source\": \"s2-fos-model\"\n        }\n      ],\n      \"publicationTypes\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"publicationDate\": \"2024-04-29\",\n      \"journal\": {\n        \"volume\": \"40\",\n        \"pages\": \"116 - 135\",\n        \"name\": \"IETE Technical Review\"\n      },\n      \"citationStyles\": {\n        \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n      },\n      \"authors\": [\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        },\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a4e111e-bdbd-405e-a6e1-d4c18c1df86a",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"1741101\",\n    \"1741101\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ac4db81-1c16-4c13-8b34-e8c101254151",
+          "name": "Search for authors by name",
+          "request": {
+            "name": "Search for authors by name",
+            "description": {
+              "content": "Specifying <code>papers</code> fields in the request will return all papers linked to each author in the results. Set a <code>limit</code> on the search results to reduce output size and latency.<br><br>\nExamples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/search?query=adam+smith</code></li>\n    <ul>\n        <li>Returns with total=490, offset=0, next=100, and data is a list of 100 authors.</li>\n        <li>Each author has their authorId and name. </li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/search?query=adam+smith&fields=name,url,papers.title,papers.year&limit=5</code></li>\n    <ul>\n        <li>Returns with total=490, offset=0, next=5, and data is a list of 5 authors.</li>\n        <li>Each author has authorId, name, url, and a list of their papers title and year.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/search?query=totalGarbageNonsense</code></li>\n    <ul>\n        <li>Returns with total = 0, offset=0, and data is a list of 0 author.</li>\n    </ul>\n    <br>\n    Limitations:\n<ul>\n    <li>Can only return up to 10 MB of data at a time.</li>\n</ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "author",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91baba23-92a7-404e-b0fa-8034997ee6fb",
+              "name": "Batch of authors with default or requested fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": \"string\",\n  \"offset\": 179,\n  \"next\": 3917,\n  \"data\": [\n    {\n      \"authorId\": \"1741101\",\n      \"externalIds\": {\n        \"DBLP\": [\n          123\n        ]\n      },\n      \"url\": \"https://www.semanticscholar.org/author/1741101\",\n      \"name\": \"Oren Etzioni\",\n      \"affiliations\": [\n        \"Allen Institute for AI\"\n      ],\n      \"homepage\": \"https://allenai.org/\",\n      \"paperCount\": \"string\",\n      \"citationCount\": \"string\",\n      \"hIndex\": \"string\",\n      \"papers\": [\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"externalIds\": {\n            \"MAG\": \"3015453090\",\n            \"DBLP\": \"conf/acl/LoWNKW20\",\n            \"ACL\": \"2020.acl-main.447\",\n            \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n            \"CorpusId\": 215416146\n          },\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"referenceCount\": 59,\n          \"citationCount\": 453,\n          \"influentialCitationCount\": 90,\n          \"isOpenAccess\": true,\n          \"openAccessPdf\": {\n            \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n            \"status\": \"HYBRID\",\n            \"license\": \"CCBY\",\n            \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n          },\n          \"fieldsOfStudy\": [\n            \"Computer Science\"\n          ],\n          \"s2FieldsOfStudy\": [\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"external\"\n            },\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"s2-fos-model\"\n            },\n            {\n              \"category\": \"Mathematics\",\n              \"source\": \"s2-fos-model\"\n            }\n          ],\n          \"publicationTypes\": [\n            \"Journal Article\",\n            \"Review\"\n          ],\n          \"publicationDate\": \"2024-04-29\",\n          \"journal\": {\n            \"volume\": \"40\",\n            \"pages\": \"116 - 135\",\n            \"name\": \"IETE Technical Review\"\n          },\n          \"citationStyles\": {\n            \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n          },\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"externalIds\": {\n            \"MAG\": \"3015453090\",\n            \"DBLP\": \"conf/acl/LoWNKW20\",\n            \"ACL\": \"2020.acl-main.447\",\n            \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n            \"CorpusId\": 215416146\n          },\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"referenceCount\": 59,\n          \"citationCount\": 453,\n          \"influentialCitationCount\": 90,\n          \"isOpenAccess\": true,\n          \"openAccessPdf\": {\n            \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n            \"status\": \"HYBRID\",\n            \"license\": \"CCBY\",\n            \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n          },\n          \"fieldsOfStudy\": [\n            \"Computer Science\"\n          ],\n          \"s2FieldsOfStudy\": [\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"external\"\n            },\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"s2-fos-model\"\n            },\n            {\n              \"category\": \"Mathematics\",\n              \"source\": \"s2-fos-model\"\n            }\n          ],\n          \"publicationTypes\": [\n            \"Journal Article\",\n            \"Review\"\n          ],\n          \"publicationDate\": \"2024-04-29\",\n          \"journal\": {\n            \"volume\": \"40\",\n            \"pages\": \"116 - 135\",\n            \"name\": \"IETE Technical Review\"\n          },\n          \"citationStyles\": {\n            \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n          },\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"authorId\": \"1741101\",\n      \"externalIds\": {\n        \"DBLP\": [\n          123\n        ]\n      },\n      \"url\": \"https://www.semanticscholar.org/author/1741101\",\n      \"name\": \"Oren Etzioni\",\n      \"affiliations\": [\n        \"Allen Institute for AI\"\n      ],\n      \"homepage\": \"https://allenai.org/\",\n      \"paperCount\": \"string\",\n      \"citationCount\": \"string\",\n      \"hIndex\": \"string\",\n      \"papers\": [\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"externalIds\": {\n            \"MAG\": \"3015453090\",\n            \"DBLP\": \"conf/acl/LoWNKW20\",\n            \"ACL\": \"2020.acl-main.447\",\n            \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n            \"CorpusId\": 215416146\n          },\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"referenceCount\": 59,\n          \"citationCount\": 453,\n          \"influentialCitationCount\": 90,\n          \"isOpenAccess\": true,\n          \"openAccessPdf\": {\n            \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n            \"status\": \"HYBRID\",\n            \"license\": \"CCBY\",\n            \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n          },\n          \"fieldsOfStudy\": [\n            \"Computer Science\"\n          ],\n          \"s2FieldsOfStudy\": [\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"external\"\n            },\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"s2-fos-model\"\n            },\n            {\n              \"category\": \"Mathematics\",\n              \"source\": \"s2-fos-model\"\n            }\n          ],\n          \"publicationTypes\": [\n            \"Journal Article\",\n            \"Review\"\n          ],\n          \"publicationDate\": \"2024-04-29\",\n          \"journal\": {\n            \"volume\": \"40\",\n            \"pages\": \"116 - 135\",\n            \"name\": \"IETE Technical Review\"\n          },\n          \"citationStyles\": {\n            \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n          },\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"externalIds\": {\n            \"MAG\": \"3015453090\",\n            \"DBLP\": \"conf/acl/LoWNKW20\",\n            \"ACL\": \"2020.acl-main.447\",\n            \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n            \"CorpusId\": 215416146\n          },\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"referenceCount\": 59,\n          \"citationCount\": 453,\n          \"influentialCitationCount\": 90,\n          \"isOpenAccess\": true,\n          \"openAccessPdf\": {\n            \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n            \"status\": \"HYBRID\",\n            \"license\": \"CCBY\",\n            \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n          },\n          \"fieldsOfStudy\": [\n            \"Computer Science\"\n          ],\n          \"s2FieldsOfStudy\": [\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"external\"\n            },\n            {\n              \"category\": \"Computer Science\",\n              \"source\": \"s2-fos-model\"\n            },\n            {\n              \"category\": \"Mathematics\",\n              \"source\": \"s2-fos-model\"\n            }\n          ],\n          \"publicationTypes\": [\n            \"Journal Article\",\n            \"Review\"\n          ],\n          \"publicationDate\": \"2024-04-29\",\n          \"journal\": {\n            \"volume\": \"40\",\n            \"pages\": \"116 - 135\",\n            \"name\": \"IETE Technical Review\"\n          },\n          \"citationStyles\": {\n            \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n          },\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69bcc864-6d18-40e2-aaf2-23a71db87cd8",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49c13b6d-2325-46be-b424-c806dd245b37",
+          "name": "Details about an author",
+          "request": {
+            "name": "Details about an author",
+            "description": {
+              "content": "Examples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101</code></li>\n    <ul>\n        <li>Returns the author's authorId and name.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101?fields=url,papers</code></li>\n    <ul>\n        <li>Returns the author's authorId, url, and list of papers.  </li>\n        <li>Each paper has its paperId plus its title.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101?fields=url,papers.abstract,papers.authors</code></li>\n    <ul>\n        <li>Returns the author's authorId, url, and list of papers.  </li>\n        <li>Each paper has its paperId, abstract, and list of authors.</li>\n        <li>In that list of authors, each author has their authorId and name.</li>\n    </ul>\n    <br>\n    Limitations:\n    <ul>\n        <li>Can only return up to 10 MB of data at a time.</li>\n    </ul>\n</ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "author",
+                ":author_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f27711c-34fd-42a1-9832-31483e234809",
+              "name": "Author with default or requested fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    ":author_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authorId\": \"1741101\",\n  \"externalIds\": {\n    \"DBLP\": [\n      123\n    ]\n  },\n  \"url\": \"https://www.semanticscholar.org/author/1741101\",\n  \"name\": \"Oren Etzioni\",\n  \"affiliations\": [\n    \"Allen Institute for AI\"\n  ],\n  \"homepage\": \"https://allenai.org/\",\n  \"paperCount\": \"string\",\n  \"citationCount\": \"string\",\n  \"hIndex\": \"string\",\n  \"papers\": [\n    {\n      \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"corpusId\": 215416146,\n      \"externalIds\": {\n        \"MAG\": \"3015453090\",\n        \"DBLP\": \"conf/acl/LoWNKW20\",\n        \"ACL\": \"2020.acl-main.447\",\n        \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n        \"CorpusId\": 215416146\n      },\n      \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n      \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n      \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n      \"publicationVenue\": {\n        \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n        \"type\": \"conference\",\n        \"alternate_names\": [\n          \"Annu Meet Assoc Comput Linguistics\",\n          \"Meeting of the Association for Computational Linguistics\",\n          \"ACL\",\n          \"Meet Assoc Comput Linguistics\"\n        ],\n        \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n      },\n      \"year\": 1997,\n      \"referenceCount\": 59,\n      \"citationCount\": 453,\n      \"influentialCitationCount\": 90,\n      \"isOpenAccess\": true,\n      \"openAccessPdf\": {\n        \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n        \"status\": \"HYBRID\",\n        \"license\": \"CCBY\",\n        \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n      },\n      \"fieldsOfStudy\": [\n        \"Computer Science\"\n      ],\n      \"s2FieldsOfStudy\": [\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"external\"\n        },\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"s2-fos-model\"\n        },\n        {\n          \"category\": \"Mathematics\",\n          \"source\": \"s2-fos-model\"\n        }\n      ],\n      \"publicationTypes\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"publicationDate\": \"2024-04-29\",\n      \"journal\": {\n        \"volume\": \"40\",\n        \"pages\": \"116 - 135\",\n        \"name\": \"IETE Technical Review\"\n      },\n      \"citationStyles\": {\n        \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n      },\n      \"authors\": [\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        },\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        }\n      ]\n    },\n    {\n      \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"corpusId\": 215416146,\n      \"externalIds\": {\n        \"MAG\": \"3015453090\",\n        \"DBLP\": \"conf/acl/LoWNKW20\",\n        \"ACL\": \"2020.acl-main.447\",\n        \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n        \"CorpusId\": 215416146\n      },\n      \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n      \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n      \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n      \"publicationVenue\": {\n        \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n        \"type\": \"conference\",\n        \"alternate_names\": [\n          \"Annu Meet Assoc Comput Linguistics\",\n          \"Meeting of the Association for Computational Linguistics\",\n          \"ACL\",\n          \"Meet Assoc Comput Linguistics\"\n        ],\n        \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n      },\n      \"year\": 1997,\n      \"referenceCount\": 59,\n      \"citationCount\": 453,\n      \"influentialCitationCount\": 90,\n      \"isOpenAccess\": true,\n      \"openAccessPdf\": {\n        \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n        \"status\": \"HYBRID\",\n        \"license\": \"CCBY\",\n        \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n      },\n      \"fieldsOfStudy\": [\n        \"Computer Science\"\n      ],\n      \"s2FieldsOfStudy\": [\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"external\"\n        },\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"s2-fos-model\"\n        },\n        {\n          \"category\": \"Mathematics\",\n          \"source\": \"s2-fos-model\"\n        }\n      ],\n      \"publicationTypes\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"publicationDate\": \"2024-04-29\",\n      \"journal\": {\n        \"volume\": \"40\",\n        \"pages\": \"116 - 135\",\n        \"name\": \"IETE Technical Review\"\n      },\n      \"citationStyles\": {\n        \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n      },\n      \"authors\": [\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        },\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34611689-038c-411c-840a-7ed749543fb2",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    ":author_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fae2aec-1d51-4040-8f45-bdfb9e315377",
+              "name": "Bad paper id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    ":author_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Requested object not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3e1e970-5401-4edf-aaa1-692c472f2d78",
+          "name": "Details about an author's papers",
+          "request": {
+            "name": "Details about an author's papers",
+            "description": {
+              "content": "Fetch the papers of an author in batches.<br>\nOnly retrieves the most recent 10,000 citations/references for papers belonging to the batch.<br>\nTo retrieve the full set of citations for a paper,\nuse the /paper/{paper_id}/citations endpoint\n<br><br>\nExamples:\n<ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101/papers</code></li>\n    <ul>\n        <li>Return with offset=0, and data is a list of the first 100 papers.</li>\n        <li>Each paper has its paperId and title.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101/papers?fields=url,year,authors&limit=2</code></li>\n    <ul>\n        <li>Returns with offset=0, next=2, and data is a list of 2 papers.</li>\n        <li>Each paper has its paperId, url, year, and list of authors.</li>\n        <li>Each author has their authorId and name.</li>\n    </ul>\n    <li><code>https://api.semanticscholar.org/graph/v1/author/1741101/papers?fields=citations.authors&offset=260</code></li>\n    <ul>\n        <li>Returns with offset=260, and data is a list of the last 4 papers.</li>\n        <li>Each paper has its paperId and a list of citations.</li>\n        <li>Each citation has its paperId and a list of authors.</li>\n        <li>Each author has their authorId and name.</li>\n    </ul>\n</ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "author",
+                ":author_id",
+                "papers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ec55921-a2ba-42b6-89e9-aaac7623aebd",
+              "name": "List of papers with default or requested fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    ":author_id",
+                    "papers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 748,\n  \"next\": 723,\n  \"data\": [\n    {\n      \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"corpusId\": 215416146,\n      \"externalIds\": {\n        \"MAG\": \"3015453090\",\n        \"DBLP\": \"conf/acl/LoWNKW20\",\n        \"ACL\": \"2020.acl-main.447\",\n        \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n        \"CorpusId\": 215416146\n      },\n      \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n      \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n      \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n      \"publicationVenue\": {\n        \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n        \"type\": \"conference\",\n        \"alternate_names\": [\n          \"Annu Meet Assoc Comput Linguistics\",\n          \"Meeting of the Association for Computational Linguistics\",\n          \"ACL\",\n          \"Meet Assoc Comput Linguistics\"\n        ],\n        \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n      },\n      \"year\": 1997,\n      \"referenceCount\": 59,\n      \"citationCount\": 453,\n      \"influentialCitationCount\": 90,\n      \"isOpenAccess\": true,\n      \"openAccessPdf\": {\n        \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n        \"status\": \"HYBRID\",\n        \"license\": \"CCBY\",\n        \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n      },\n      \"fieldsOfStudy\": [\n        \"Computer Science\"\n      ],\n      \"s2FieldsOfStudy\": [\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"external\"\n        },\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"s2-fos-model\"\n        },\n        {\n          \"category\": \"Mathematics\",\n          \"source\": \"s2-fos-model\"\n        }\n      ],\n      \"publicationTypes\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"publicationDate\": \"2024-04-29\",\n      \"journal\": {\n        \"volume\": \"40\",\n        \"pages\": \"116 - 135\",\n        \"name\": \"IETE Technical Review\"\n      },\n      \"citationStyles\": {\n        \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n      },\n      \"authors\": [\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        },\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        }\n      ],\n      \"citations\": [\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"corpusId\": 215416146,\n      \"externalIds\": {\n        \"MAG\": \"3015453090\",\n        \"DBLP\": \"conf/acl/LoWNKW20\",\n        \"ACL\": \"2020.acl-main.447\",\n        \"DOI\": \"10.18653/V1/2020.ACL-MAIN.447\",\n        \"CorpusId\": 215416146\n      },\n      \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n      \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n      \"abstract\": \"We describe a deployed scalable system for organizing published scientific literature into a heterogeneous graph to facilitate algorithmic manipulation and discovery.\",\n      \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n      \"publicationVenue\": {\n        \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n        \"type\": \"conference\",\n        \"alternate_names\": [\n          \"Annu Meet Assoc Comput Linguistics\",\n          \"Meeting of the Association for Computational Linguistics\",\n          \"ACL\",\n          \"Meet Assoc Comput Linguistics\"\n        ],\n        \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n      },\n      \"year\": 1997,\n      \"referenceCount\": 59,\n      \"citationCount\": 453,\n      \"influentialCitationCount\": 90,\n      \"isOpenAccess\": true,\n      \"openAccessPdf\": {\n        \"url\": \"https://www.aclweb.org/anthology/2020.acl-main.447.pdf\",\n        \"status\": \"HYBRID\",\n        \"license\": \"CCBY\",\n        \"disclaimer\": \"Notice: This snippet is extracted from the open access paper or abstract available at https://aclanthology.org/2020.acl-main.447, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\"\n      },\n      \"fieldsOfStudy\": [\n        \"Computer Science\"\n      ],\n      \"s2FieldsOfStudy\": [\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"external\"\n        },\n        {\n          \"category\": \"Computer Science\",\n          \"source\": \"s2-fos-model\"\n        },\n        {\n          \"category\": \"Mathematics\",\n          \"source\": \"s2-fos-model\"\n        }\n      ],\n      \"publicationTypes\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"publicationDate\": \"2024-04-29\",\n      \"journal\": {\n        \"volume\": \"40\",\n        \"pages\": \"116 - 135\",\n        \"name\": \"IETE Technical Review\"\n      },\n      \"citationStyles\": {\n        \"bibtex\": \"@['JournalArticle', 'Conference']{Ammar2018ConstructionOT,\\n author = {Waleed Ammar and Dirk Groeneveld and Chandra Bhagavatula and Iz Beltagy and Miles Crawford and Doug Downey and Jason Dunkelberger and Ahmed Elgohary and Sergey Feldman and Vu A. Ha and Rodney Michael Kinney and Sebastian Kohlmeier and Kyle Lo and Tyler C. Murray and Hsu-Han Ooi and Matthew E. Peters and Joanna L. Power and Sam Skjonsberg and Lucy Lu Wang and Christopher Wilhelm and Zheng Yuan and Madeleine van Zuylen and Oren Etzioni},\\n booktitle = {NAACL},\\n pages = {84-91},\\n title = {Construction of the Literature Graph in Semantic Scholar},\\n year = {2018}\\n}\\n\"\n      },\n      \"authors\": [\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        },\n        {\n          \"authorId\": \"1741101\",\n          \"name\": \"Oren Etzioni\"\n        }\n      ],\n      \"citations\": [\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"paperId\": \"5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"corpusId\": 215416146,\n          \"url\": \"https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7\",\n          \"title\": \"Construction of the Literature Graph in Semantic Scholar\",\n          \"venue\": \"Annual Meeting of the Association for Computational Linguistics\",\n          \"publicationVenue\": {\n            \"name\": \"Annual Meeting of the Association for Computational Linguistics\",\n            \"type\": \"conference\",\n            \"alternate_names\": [\n              \"Annu Meet Assoc Comput Linguistics\",\n              \"Meeting of the Association for Computational Linguistics\",\n              \"ACL\",\n              \"Meet Assoc Comput Linguistics\"\n            ],\n            \"url\": \"https://www.aclweb.org/anthology/venues/acl/\"\n          },\n          \"year\": 1997,\n          \"authors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee237015-b49c-4404-934b-46fa29d2c0f6",
+              "name": "Bad query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    ":author_id",
+                    "papers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unrecognized or unsupported fields: [author.creditCardNumber, garbage]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15da69d1-1bae-447d-98e4-6a54835e5045",
+              "name": "Bad paper id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "author",
+                    ":author_id",
+                    "papers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Requested object not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.semanticscholar.org/graph/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8291c39d-3fd7-4afa-86c5-d8670bf4ef4b",
+    "name": "Academic Graph Author Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        ",
+      "type": "text/plain"
+    }
+  }
+}

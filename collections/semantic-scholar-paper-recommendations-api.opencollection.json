@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Academic Graph Author Data Paper Recommendations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Paper Recommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get recommended papers for lists of positive and negative example papers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.semanticscholar.org/graph/v1/papers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get recommended papers for lists of positive and negative example papers"
+        },
+        {
+          "info": {
+            "name": "Get recommended papers for a single positive example paper",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.semanticscholar.org/graph/v1/papers/forpaper/:paper_id"
+          },
+          "docs": "Get recommended papers for a single positive example paper"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
