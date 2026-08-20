@@ -31,6 +31,15 @@ tags:
   - Citations
   - Authors
   - Scientific Literature
+  - Artificial Intelligence
+  - Recommendations
+tags_raw:
+  - Academic
+  - Research
+  - Papers
+  - Citations
+  - Authors
+  - Scientific Literature
   - AI
   - Recommendations
 url: https://raw.githubusercontent.com/api-evangelist/semantic-scholar/refs/heads/main/apis.yml
