@@ -15,11 +15,10 @@
       "feed_url": "https://github.com/allenai/s2-folks",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     }
   ],
   "repo": "semantic-scholar",
   "post_count": 10,
-  "fetched": "2026-08-15T12:11:08Z"
+  "fetched": "2026-08-22T20:20:02Z"
 }
