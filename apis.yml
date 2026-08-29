@@ -11,6 +11,19 @@ description: >
   allowance. Semantic Scholar supports AI agent integrations through multiple community-built
   MCP servers that expose its academic graph to LLM-based toolchains.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -134,6 +147,8 @@ apis:
   - type: Documentation
     url: https://api.semanticscholar.org/api-docs/recommendations
 common:
+  - type: IssueTracker
+    url: https://github.com/allenai/s2-folks/issues
   - type: AgenticAccess
     url: agentic-access/semantic-scholar-agentic-access.yml
   - type: VulnerabilityDisclosure
