@@ -147,6 +147,9 @@ apis:
   - type: Documentation
     url: https://api.semanticscholar.org/api-docs/recommendations
 common:
+  - type: CapabilityMap
+    url: capabilities/semantic-scholar-capability-edges.yml
+    name: Semantic Scholar Business Capability Map
   - type: IssueTracker
     url: https://github.com/allenai/s2-folks/issues
   - type: AgenticAccess
