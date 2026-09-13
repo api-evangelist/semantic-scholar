@@ -1,0 +1,35 @@
+generated: '2026-09-11'
+method: probed
+source: https://api.semanticscholar.org/mcp
+status: published
+server:
+  name: semantic-scholar
+  transport: http
+  url: https://api.semanticscholar.org/mcp
+deployment:
+  mode: remote
+  endpoint: https://api.semanticscholar.org/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-11 (endpoint found in the provider's own documentation, then probed)
+tools_count: 8
+tools:
+- name: get_paper
+  description: ''
+- name: get_paper_batch
+  description: ''
+- name: get_citations
+  description: ''
+- name: search_authors_by_name
+  description: ''
+- name: get_author_papers
+  description: ''
+- name: search_papers_by_relevance
+  description: ''
+- name: search_paper_by_title
+  description: ''
+- name: snippet_search
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
