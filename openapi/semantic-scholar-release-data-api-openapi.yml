@@ -1,10 +1,36 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Academic Graph Author Data Release Data API
+  title: S2AG Datasets Release Data API
   version: '1.0'
-  description: "Fetch paper and author data from the Semantic Scholar Academic Graph (S2AG).\n        <br><br>\n        Some things to note:\n        <ul>\n        <li>If you are using an API key, it must be set in the header <code>x-api-key</code> (case-sensitive).</li>\n        <li>We have two different IDs for a single paper:\n          <ul>\n            <li><code>paperId</code> - string - The primary way to identify papers when using our website or this API</li>\n            <li><code>corpusId</code> - int64 - A second way to identify papers. Our datasets use corpusId when pointing to papers.</li>\n          </ul>\n        </li>\n        <li>Other useful resources<ul>\n        <li><a href=\"https://www.semanticscholar.org/product/api\">Overview</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/\">allenai/s2-folks</a></li>\n        <li><a href=\"https://github.com/allenai/s2-folks/blob/main/FAQ.md\">FAQ</a> in allenai/s2folks</li>\n        </ul></li>\n        "
+  description: 'Download full-corpus datasets from the Semantic Scholar Academic Graph (S2AG)
+
+
+    Some python demonstrating usage of the datasets API:
+
+
+    r1 = requests.get(''https://api.semanticscholar.org/datasets/v1/release'').json()
+
+    print(r1[-3:])
+
+    [''2023-03-14'', ''2023-03-21'', ''2023-03-28'']
+
+
+    r2 = requests.get(''https://api.semanticscholar.org/datasets/v1/release/latest'').json()
+
+    print(r2[''release_id''])
+
+    2023-03-28
+
+
+    print(json.dumps(r2[''datasets''][0], indent=2))
+
+    {
+
+    "name": "abstracts",
+
+    "description": "Paper abstract…'
 servers:
-- url: https://api.semanticscholar.org/graph/v1
+- url: https://api.semanticscholar.org/datasets/v1
 tags:
 - name: Release Data
 paths:

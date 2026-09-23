@@ -1,30 +1,46 @@
 {
   "provider": "semantic-scholar",
   "sources": [
-    "semantic-scholar-author-data-api-openapi.yml",
-    "semantic-scholar-incremental-updates-api-openapi.yml",
-    "semantic-scholar-paper-data-api-openapi.yml",
-    "semantic-scholar-paper-recommendations-api-openapi.yml",
-    "semantic-scholar-release-data-api-openapi.yml",
-    "semantic-scholar-snippet-text-api-openapi.yml"
+    "_original/semantic-scholar-academic-graph-openapi.yml",
+    "_original/semantic-scholar-datasets-openapi.yml",
+    "_original/semantic-scholar-recommendations-openapi.yml"
   ],
   "outputs": [
     "semantic-scholar-author-data-api-openapi.yml",
-    "semantic-scholar-incremental-updates-api-openapi.yml",
     "semantic-scholar-paper-data-api-openapi.yml",
-    "semantic-scholar-paper-recommendations-api-openapi.yml",
+    "semantic-scholar-snippet-text-api-openapi.yml",
+    "semantic-scholar-incremental-updates-api-openapi.yml",
     "semantic-scholar-release-data-api-openapi.yml",
-    "semantic-scholar-snippet-text-api-openapi.yml"
+    "semantic-scholar-paper-recommendations-api-openapi.yml"
   ],
   "archived": [],
   "errors": [
-    "semantic-scholar-incremental-updates-api-openapi.yml: dangling $ref: #/components/schemas/Dataset%20Diff%20List",
-    "semantic-scholar-paper-recommendations-api-openapi.yml: dangling $ref: #/components/schemas/Paper%20Input",
-    "semantic-scholar-paper-recommendations-api-openapi.yml: dangling $ref: #/components/schemas/Paper%20Recommendations",
-    "semantic-scholar-release-data-api-openapi.yml: dangling $ref: #/components/schemas/Dataset%20Metadata",
-    "semantic-scholar-release-data-api-openapi.yml: dangling $ref: #/components/schemas/Release%20Metadata"
+    "semantic-scholar-datasets-openapi.yml: dangling $ref: #/components/schemas/Dataset%20Diff%20List",
+    "semantic-scholar-datasets-openapi.yml: dangling $ref: #/components/schemas/Dataset%20Metadata",
+    "semantic-scholar-datasets-openapi.yml: dangling $ref: #/components/schemas/Release%20Metadata",
+    "semantic-scholar-recommendations-openapi.yml: dangling $ref: #/components/schemas/Paper%20Input",
+    "semantic-scholar-recommendations-openapi.yml: dangling $ref: #/components/schemas/Paper%20Recommendations"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "semantic-scholar-academic-graph-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0; renamed 3 component key(s) illegal in 3.x (e.g. Autocomplete Paper)",
+    "semantic-scholar-academic-graph-openapi.yml: declared missing tag: Author Data",
+    "semantic-scholar-academic-graph-openapi.yml: declared missing tag: Paper Data",
+    "semantic-scholar-academic-graph-openapi.yml: declared missing tag: Snippet Text",
+    "semantic-scholar-datasets-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0; renamed 5 component key(s) illegal in 3.x (e.g. Dataset Diff)",
+    "semantic-scholar-datasets-openapi.yml: declared missing tag: Incremental Updates",
+    "semantic-scholar-datasets-openapi.yml: declared missing tag: Release Data",
+    "semantic-scholar-recommendations-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0; renamed 2 component key(s) illegal in 3.x (e.g. Paper Input)",
+    "semantic-scholar-recommendations-openapi.yml: declared missing tag: Paper Recommendations",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "semantic-scholar-author-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "semantic-scholar-incremental-updates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "semantic-scholar-paper-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "semantic-scholar-paper-recommendations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "semantic-scholar-release-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "semantic-scholar-snippet-text-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
