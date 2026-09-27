@@ -12,17 +12,20 @@ description: >
   MCP servers that expose its academic graph to LLM-based toolchains.
 type: Index
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - allenai/s2-folks
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -46,6 +49,8 @@ tags:
   - Scientific Literature
   - Artificial Intelligence
   - Recommendations
+  - Research Data
+  - Open Access
 tags_raw:
   - Academic
   - Research
@@ -55,6 +60,8 @@ tags_raw:
   - Scientific Literature
   - AI
   - Recommendations
+  - Research Data
+  - Open Access
 url: https://raw.githubusercontent.com/api-evangelist/semantic-scholar/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'

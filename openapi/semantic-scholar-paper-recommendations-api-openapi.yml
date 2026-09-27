@@ -66,17 +66,17 @@ paths:
                 $ref: '#/components/schemas/Paper%20Recommendations'
 components:
   schemas:
-    Error404:
-      properties:
-        error:
-          type: string
-          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Paper/Author/Object not found\"</code></li>\n    <li><code>\"Paper/Author/Object with id ### not found\"</code></li>\n</ul>"
-          example: Requested object not found
-      type: object
     Error400:
       properties:
         error:
           type: string
           description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
           example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
+      type: object
+    Error404:
+      properties:
+        error:
+          type: string
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Paper/Author/Object not found\"</code></li>\n    <li><code>\"Paper/Author/Object with id ### not found\"</code></li>\n</ul>"
+          example: Requested object not found
       type: object
