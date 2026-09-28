@@ -16,20 +16,38 @@ deployment:
 tools_count: 8
 tools:
 - name: get_paper
-  description: ''
+  description: 'Get details about a paper by its id.  Args:     paper_id: The id of the paper to get.
+    The following types of IDs are supported:         <sha> - a Semantic Scholar ID, e.g. 649def34f8be52c8b66281af98ae884c09aef38b         CorpusId:<id>
+    - a'
 - name: get_paper_batch
-  description: ''
+  description: 'Get details about a list of papers by their ids.  Args:     ids: The paper ids to get.
+    The following types of IDs are supported:         <sha> - a Semantic Scholar ID, e.g. 649def34f8be52c8b66281af98ae884c09aef38b         CorpusId:<id>
+    - a'
 - name: get_citations
-  description: ''
+  description: 'Get details about the papers that cite this paper (i.e. papers in whose bibliography this
+    paper appears)  Args:     paper_id: The id of the paper to get. The following types of IDs are supported:         <sha>
+    - a Semantic Scholar ID, e.g.'
 - name: search_authors_by_name
-  description: ''
+  description: 'Search for authors by name.  Args:     name: The name to search for.      fields: String
+    of comma-separated fields to include in the response. E.g "name,url,papers".     The "authorId" field
+    is always returned. Default is "name". Other ava'
 - name: get_author_papers
-  description: ''
+  description: 'Get papers written by this author.  Args:     author_id: The id of the author to get papers
+    for.      paper_fields: String of comma-separated fields to include in the response. E.g "url,year,authors".     Default
+    is "title". Available fiel'
 - name: search_papers_by_relevance
-  description: ''
+  description: 'Search for papers by keyword relevance.  Args:     keyword: The keyword to search for.      fields:
+    String of comma-separated fields to include in the response. E.g "url,year,authors".     Default is
+    "title". Available fields are: abstract'
 - name: search_paper_by_title
-  description: ''
+  description: 'Search for papers by title.  Args:     title: The title to search for.      fields: String
+    of comma-separated fields to include in the response. E.g "url,year,authors".     Default is "title".
+    Available fields are: abstract, authors, citat'
 - name: snippet_search
-  description: ''
+  description: Search for text snippets that most closely match the query.  Text snippets are excerpts
+    of approximately 500 words, drawn from a paper's title, abstract, and body text, but excluding figure
+    captions and the bibliography. It will return the
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
