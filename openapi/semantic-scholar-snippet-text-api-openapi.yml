@@ -55,33 +55,40 @@ paths:
                 $ref: '#/components/schemas/SnippetMatch'
 components:
   schemas:
-    annotations:
+    refMention:
       properties:
-        sentences:
-          type: array
-          items:
-            $ref: '#/components/schemas/sentence'
-        refMentions:
-          type: array
-          items:
-            $ref: '#/components/schemas/refMention'
-      type: object
-    Error400:
-      properties:
-        error:
+        start:
+          type: integer
+          example: 377
+        end:
+          type: integer
+          example: 402
+        matchedPaperCorpusId:
           type: string
-          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
-          example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
+          example: '7377848'
       type: object
-    Snippet_Match:
+    snippet:
       properties:
-        snippet:
-          $ref: '#/components/schemas/snippet'
-        score:
-          type: number
-          example: 0.561970777028496
-        paper:
-          $ref: '#/components/schemas/paper'
+        text:
+          type: string
+          description: The direct quote or snippet from the paper relevant to the query.
+          example: "In this paper, we discuss the construction of a graph, providing a symbolic representation of the scientific literature. We describe deployed models for identifying authors, references and entities in the paper text, and provide experimental results to evaluate the performance of each model. \n\nThree research directions follow from this work and other similar projects, e.g., Hahn-Powell et al. (2017); Wu et al. (2014): i) improving quality and enriching content of the literature graph (e.g., ontology matching and knowledge base population). ii) aggregating domain-specific extractions across many papers to enable a better understanding of the literature as a whole (e.g., identifying demographic biases in clinical trial participants and summarizing empirical results on important tasks). iii) exploring the literature via natural language interfaces. \n\nIn order to help future research efforts, we make the following resources publicly available: metadata for over 20 million papers,10 meaningful citations dataset,11 models for figure and table extraction,12 models for predicting citations in a paper draft 13 and models for extracting paper metadata,14 among other resources."
+        snippetKind:
+          type: string
+          description: 'Where the snippet is located, options are: title, abstract, or body. '
+          example: body
+        section:
+          type: string
+          description: Only applies to snippets from the body, refers to the section of the paper where the snippet is located.
+          example: Conclusion and Future Work
+        snippetOffset:
+          type: object
+          description: The location of the snippet within the paper.
+          example:
+            start: 24506
+            end: 25694
+        annotations:
+          $ref: '#/components/schemas/annotations'
       type: object
     paper:
       properties:
@@ -125,28 +132,23 @@ components:
         openAccessInfo:
           $ref: '#/components/schemas/openAccessInfo'
       type: object
-    snippet:
+    annotations:
       properties:
-        text:
+        sentences:
+          type: array
+          items:
+            $ref: '#/components/schemas/sentence'
+        refMentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/refMention'
+      type: object
+    Error400:
+      properties:
+        error:
           type: string
-          description: The direct quote or snippet from the paper relevant to the query.
-          example: "In this paper, we discuss the construction of a graph, providing a symbolic representation of the scientific literature. We describe deployed models for identifying authors, references and entities in the paper text, and provide experimental results to evaluate the performance of each model. \n\nThree research directions follow from this work and other similar projects, e.g., Hahn-Powell et al. (2017); Wu et al. (2014): i) improving quality and enriching content of the literature graph (e.g., ontology matching and knowledge base population). ii) aggregating domain-specific extractions across many papers to enable a better understanding of the literature as a whole (e.g., identifying demographic biases in clinical trial participants and summarizing empirical results on important tasks). iii) exploring the literature via natural language interfaces. \n\nIn order to help future research efforts, we make the following resources publicly available: metadata for over 20 million papers,10 meaningful citations dataset,11 models for figure and table extraction,12 models for predicting citations in a paper draft 13 and models for extracting paper metadata,14 among other resources."
-        snippetKind:
-          type: string
-          description: 'Where the snippet is located, options are: title, abstract, or body. '
-          example: body
-        section:
-          type: string
-          description: Only applies to snippets from the body, refers to the section of the paper where the snippet is located.
-          example: Conclusion and Future Work
-        snippetOffset:
-          type: object
-          description: The location of the snippet within the paper.
-          example:
-            start: 24506
-            end: 25694
-        annotations:
-          $ref: '#/components/schemas/annotations'
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
+          example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
       type: object
     SnippetMatch:
       properties:
@@ -157,6 +159,15 @@ components:
         retrievalVersion:
           type: string
           description: A rough representation of the retrieval approach we've used to get the results. We'll usually bump this if we change something about how we get results. Note that the same retrievalVersion value doesn't guarantee that you'll get the same results for the same query at different times, and a different retrievalVersion value doesn't always mean you'll get different results.
+      type: object
+    sentence:
+      properties:
+        start:
+          type: integer
+          example: 0
+        end:
+          type: integer
+          example: 120
       type: object
     openAccessInfo:
       properties:
@@ -173,24 +184,13 @@ components:
           description: A disclaimer about the open access use of this paper.
           example: 'Notice: This snippet is extracted from the open access paper or abstract available at https://arxiv.org/abs/1805.02262, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.'
       type: object
-    refMention:
+    Snippet_Match:
       properties:
-        start:
-          type: integer
-          example: 377
-        end:
-          type: integer
-          example: 402
-        matchedPaperCorpusId:
-          type: string
-          example: '7377848'
-      type: object
-    sentence:
-      properties:
-        start:
-          type: integer
-          example: 0
-        end:
-          type: integer
-          example: 120
+        snippet:
+          $ref: '#/components/schemas/snippet'
+        score:
+          type: number
+          example: 0.561970777028496
+        paper:
+          $ref: '#/components/schemas/paper'
       type: object
