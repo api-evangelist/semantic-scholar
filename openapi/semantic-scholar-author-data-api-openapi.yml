@@ -304,6 +304,58 @@ paths:
                 $ref: '#/components/schemas/AuthorPaperBatch'
 components:
   schemas:
+    AuthorWithPapers:
+      properties:
+        authorId:
+          type: string
+          title: This field will be provided if no fields are specified
+          description: Semantic Scholar’s unique ID for the author.
+          example: '1741101'
+        externalIds:
+          type: object
+          description: An object that contains the ORCID/DBLP IDs for the author, if known.
+          example:
+            DBLP:
+            - 123
+        url:
+          type: string
+          description: URL of the author on the Semantic Scholar website.
+          example: https://www.semanticscholar.org/author/1741101
+        name:
+          type: string
+          title: This field will be provided if no fields are specified
+          description: Author’s name.
+          example: Oren Etzioni
+        affiliations:
+          type: array
+          description: Array of organizational affiliations for the author.
+          example:
+          - Allen Institute for AI
+          items:
+            type: string
+        homepage:
+          type: string
+          description: The author’s homepage.
+          example: https://allenai.org/
+        paperCount:
+          type: string
+          description: The author's total publications count.
+          example: 10
+        citationCount:
+          type: string
+          description: The author's total citations count.
+          example: 50
+        hIndex:
+          type: string
+          description: 'The author’s h-index, which is a measure of the productivity and citation impact of the author’s publications: https://www.semanticscholar.org/faq#h-index'
+          example: 5
+        papers:
+          type: array
+          items:
+            title: Paper Info
+            allOf:
+            - $ref: '#/components/schemas/BasePaper'
+      type: object
     AuthorSearchBatch:
       properties:
         total:
@@ -326,18 +378,59 @@ components:
             allOf:
             - $ref: '#/components/schemas/AuthorWithPapers'
       type: object
-    AuthorInfo:
+    AuthorIdList:
       properties:
-        authorId:
+        ids:
+          type: array
+          items:
+            type: string
+            example: '1741101'
+      type: object
+    PaperInfo:
+      properties:
+        paperId:
           type: string
-          title: This field will be provided if no fields are specified
-          description: Semantic Scholar’s unique ID for the author.
-          example: '1741101'
-        name:
+          description: Semantic Scholar’s primary unique identifier for a paper.
+          example: 5c5751d45e298cea054f32b392c12c61027d2fe7
+        corpusId:
+          type: integer
+          description: Semantic Scholar’s secondary unique identifier for a paper.
+          example: 215416146
+        url:
           type: string
-          title: This field will be provided if no fields are specified
-          description: Author’s name.
-          example: Oren Etzioni
+          description: URL of the paper on the Semantic Scholar website.
+          example: https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7
+        title:
+          type: string
+          description: Title of the paper.
+          example: Construction of the Literature Graph in Semantic Scholar
+        venue:
+          type: string
+          description: The name of the paper’s publication venue.
+          example: Annual Meeting of the Association for Computational Linguistics
+        publicationVenue:
+          type: object
+          description: 'An object that contains the following information about the journal or conference in which this paper was published: id (the venue’s unique ID), name (the venue’s name), type (the type of venue), alternate_names (an array of alternate names for the venue), and url (the venue’s website).'
+          example:
+            id: 1e33b3be-b2ab-46e9-96e8-d4eb4bad6e44
+            name: Annual Meeting of the Association for Computational Linguistics
+            type: conference
+            alternate_names:
+            - Annu Meet Assoc Comput Linguistics
+            - Meeting of the Association for Computational Linguistics
+            - ACL
+            - Meet Assoc Comput Linguistics
+            url: https://www.aclweb.org/anthology/venues/acl/
+        year:
+          type: integer
+          description: The year the paper was published.
+          example: 1997
+        authors:
+          type: array
+          title: Author Info
+          description: Details about the paper's authors
+          items:
+            $ref: '#/components/schemas/AuthorInfo'
       type: object
     BasePaper:
       properties:
@@ -465,6 +558,13 @@ components:
           items:
             $ref: '#/components/schemas/AuthorInfo'
       type: object
+    Error404:
+      properties:
+        error:
+          type: string
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Paper/Author/Object not found\"</code></li>\n    <li><code>\"Paper/Author/Object with id ### not found\"</code></li>\n</ul>"
+          example: Requested object not found
+      type: object
     AuthorPaperBatch:
       properties:
         offset:
@@ -480,20 +580,18 @@ components:
             allOf:
             - $ref: '#/components/schemas/PaperWithLinks'
       type: object
-    AuthorIdList:
+    AuthorInfo:
       properties:
-        ids:
-          type: array
-          items:
-            type: string
-            example: '1741101'
-      type: object
-    Error404:
-      properties:
-        error:
+        authorId:
           type: string
-          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Paper/Author/Object not found\"</code></li>\n    <li><code>\"Paper/Author/Object with id ### not found\"</code></li>\n</ul>"
-          example: Requested object not found
+          title: This field will be provided if no fields are specified
+          description: Semantic Scholar’s unique ID for the author.
+          example: '1741101'
+        name:
+          type: string
+          title: This field will be provided if no fields are specified
+          description: Author’s name.
+          example: Oren Etzioni
       type: object
     Error400:
       properties:
@@ -501,58 +599,6 @@ components:
           type: string
           description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
           example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
-      type: object
-    AuthorWithPapers:
-      properties:
-        authorId:
-          type: string
-          title: This field will be provided if no fields are specified
-          description: Semantic Scholar’s unique ID for the author.
-          example: '1741101'
-        externalIds:
-          type: object
-          description: An object that contains the ORCID/DBLP IDs for the author, if known.
-          example:
-            DBLP:
-            - 123
-        url:
-          type: string
-          description: URL of the author on the Semantic Scholar website.
-          example: https://www.semanticscholar.org/author/1741101
-        name:
-          type: string
-          title: This field will be provided if no fields are specified
-          description: Author’s name.
-          example: Oren Etzioni
-        affiliations:
-          type: array
-          description: Array of organizational affiliations for the author.
-          example:
-          - Allen Institute for AI
-          items:
-            type: string
-        homepage:
-          type: string
-          description: The author’s homepage.
-          example: https://allenai.org/
-        paperCount:
-          type: string
-          description: The author's total publications count.
-          example: 10
-        citationCount:
-          type: string
-          description: The author's total citations count.
-          example: 50
-        hIndex:
-          type: string
-          description: 'The author’s h-index, which is a measure of the productivity and citation impact of the author’s publications: https://www.semanticscholar.org/faq#h-index'
-          example: 5
-        papers:
-          type: array
-          items:
-            title: Paper Info
-            allOf:
-            - $ref: '#/components/schemas/BasePaper'
       type: object
     PaperWithLinks:
       properties:
@@ -690,50 +736,4 @@ components:
             title: Paper Info
             allOf:
             - $ref: '#/components/schemas/PaperInfo'
-      type: object
-    PaperInfo:
-      properties:
-        paperId:
-          type: string
-          description: Semantic Scholar’s primary unique identifier for a paper.
-          example: 5c5751d45e298cea054f32b392c12c61027d2fe7
-        corpusId:
-          type: integer
-          description: Semantic Scholar’s secondary unique identifier for a paper.
-          example: 215416146
-        url:
-          type: string
-          description: URL of the paper on the Semantic Scholar website.
-          example: https://www.semanticscholar.org/paper/5c5751d45e298cea054f32b392c12c61027d2fe7
-        title:
-          type: string
-          description: Title of the paper.
-          example: Construction of the Literature Graph in Semantic Scholar
-        venue:
-          type: string
-          description: The name of the paper’s publication venue.
-          example: Annual Meeting of the Association for Computational Linguistics
-        publicationVenue:
-          type: object
-          description: 'An object that contains the following information about the journal or conference in which this paper was published: id (the venue’s unique ID), name (the venue’s name), type (the type of venue), alternate_names (an array of alternate names for the venue), and url (the venue’s website).'
-          example:
-            id: 1e33b3be-b2ab-46e9-96e8-d4eb4bad6e44
-            name: Annual Meeting of the Association for Computational Linguistics
-            type: conference
-            alternate_names:
-            - Annu Meet Assoc Comput Linguistics
-            - Meeting of the Association for Computational Linguistics
-            - ACL
-            - Meet Assoc Comput Linguistics
-            url: https://www.aclweb.org/anthology/venues/acl/
-        year:
-          type: integer
-          description: The year the paper was published.
-          example: 1997
-        authors:
-          type: array
-          title: Author Info
-          description: Details about the paper's authors
-          items:
-            $ref: '#/components/schemas/AuthorInfo'
       type: object

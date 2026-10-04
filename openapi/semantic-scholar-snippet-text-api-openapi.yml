@@ -55,6 +55,16 @@ paths:
                 $ref: '#/components/schemas/SnippetMatch'
 components:
   schemas:
+    SnippetMatch:
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snippet_Match'
+        retrievalVersion:
+          type: string
+          description: A rough representation of the retrieval approach we've used to get the results. We'll usually bump this if we change something about how we get results. Note that the same retrievalVersion value doesn't guarantee that you'll get the same results for the same query at different times, and a different retrievalVersion value doesn't always mean you'll get different results.
+      type: object
     refMention:
       properties:
         start:
@@ -66,6 +76,43 @@ components:
         matchedPaperCorpusId:
           type: string
           example: '7377848'
+      type: object
+    Error400:
+      properties:
+        error:
+          type: string
+          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
+          example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
+      type: object
+    annotations:
+      properties:
+        sentences:
+          type: array
+          items:
+            $ref: '#/components/schemas/sentence'
+        refMentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/refMention'
+      type: object
+    sentence:
+      properties:
+        start:
+          type: integer
+          example: 0
+        end:
+          type: integer
+          example: 120
+      type: object
+    Snippet_Match:
+      properties:
+        snippet:
+          $ref: '#/components/schemas/snippet'
+        score:
+          type: number
+          example: 0.561970777028496
+        paper:
+          $ref: '#/components/schemas/paper'
       type: object
     snippet:
       properties:
@@ -132,43 +179,6 @@ components:
         openAccessInfo:
           $ref: '#/components/schemas/openAccessInfo'
       type: object
-    annotations:
-      properties:
-        sentences:
-          type: array
-          items:
-            $ref: '#/components/schemas/sentence'
-        refMentions:
-          type: array
-          items:
-            $ref: '#/components/schemas/refMention'
-      type: object
-    Error400:
-      properties:
-        error:
-          type: string
-          description: "Depending on the case, error message may be any of these:\n<ul>\n    <li><code>\"Unrecognized or unsupported fields: [bad1, bad2, etc...]\"</code></li>\n    <li><code>\"Unacceptable query params: [badK1=badV1, badK2=badV2, etc...}]\"</code></li>\n    <li><code>\"Response would exceed maximum size....\"</code></li>\n        <ul><li>This error will occur when the response exceeds 10 MB. Suggestions to either break the request into smaller batches, or make use of the limit and offset features will be presented.</li></ul>\n    <li>A custom message string</li></ul>"
-          example: 'Unrecognized or unsupported fields: [author.creditCardNumber, garbage]'
-      type: object
-    SnippetMatch:
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Snippet_Match'
-        retrievalVersion:
-          type: string
-          description: A rough representation of the retrieval approach we've used to get the results. We'll usually bump this if we change something about how we get results. Note that the same retrievalVersion value doesn't guarantee that you'll get the same results for the same query at different times, and a different retrievalVersion value doesn't always mean you'll get different results.
-      type: object
-    sentence:
-      properties:
-        start:
-          type: integer
-          example: 0
-        end:
-          type: integer
-          example: 120
-      type: object
     openAccessInfo:
       properties:
         license:
@@ -183,14 +193,4 @@ components:
           type: string
           description: A disclaimer about the open access use of this paper.
           example: 'Notice: This snippet is extracted from the open access paper or abstract available at https://arxiv.org/abs/1805.02262, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.'
-      type: object
-    Snippet_Match:
-      properties:
-        snippet:
-          $ref: '#/components/schemas/snippet'
-        score:
-          type: number
-          example: 0.561970777028496
-        paper:
-          $ref: '#/components/schemas/paper'
       type: object
