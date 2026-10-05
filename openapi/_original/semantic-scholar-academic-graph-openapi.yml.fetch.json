@@ -1,0 +1,12 @@
+{
+ "url": "https://api.semanticscholar.org/graph/v1/swagger.json",
+ "requested_url": "https://api.semanticscholar.org/graph/v1/swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 123200,
+ "sha256": "00d7302bcb07414971a0b483d332e57c01344e037ce878d5baab3c312df039ae",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
