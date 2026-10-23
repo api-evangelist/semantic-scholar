@@ -1349,3 +1349,9 @@ components:
           description: Official ROR display name.
           example: Allen Institute for Artificial Intelligence
       type: object
+x-provenance:
+  method: harvested
+  publisher: Semantic Scholar
+  source: https://api.semanticscholar.org/graph/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

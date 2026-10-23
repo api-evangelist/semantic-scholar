@@ -194,3 +194,9 @@ components:
           description: A disclaimer about the open access use of this paper.
           example: 'Notice: This snippet is extracted from the open access paper or abstract available at https://arxiv.org/abs/1805.02262, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.'
       type: object
+x-provenance:
+  method: harvested
+  publisher: Semantic Scholar
+  source: https://api.semanticscholar.org/graph/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
