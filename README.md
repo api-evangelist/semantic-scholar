@@ -1,4 +1,4 @@
-# Semantic Scholar (semantic-scholar)
+# Semantic Scholar
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,70 +64,174 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Semantic Scholar is a free, AI-powered academic search engine developed by the Allen Institute for AI (AI2) that indexes over 214 million scholarly papers with 2.49 billion citations and 79 million authors. The platform exposes a public REST API organized into three services: Academic Graph (papers, authors, citations, venues, and SPECTER2 embeddings), Recommendations (paper similarity and interest-based suggestions), and Datasets (bulk downloadable corpus snapshots updated monthly). API access is available without authentication at a shared rate limit, or with a free institutional API key for a dedicated 1 RPS allowance. Semantic Scholar is widely used in academic research tooling and supports AI agent integrations through multiple community-built MCP servers.
+Semantic Scholar is a free, AI-powered academic search engine developed by the Allen Institute for AI (AI2) that indexes over 214 million scholarly papers with 2.49 billion citations and 79 million authors. The platform provides a public REST API organized into three services: Academic Graph (papers, authors, citations, venues, and SPECTER2 embeddings), Recommendations (paper similarity and interest-based suggestions), and Datasets (bulk downloadable corpus snapshots updated monthly). API access is available without authentication at a shared rate limit, or with a free API key obtained via request for a dedicated 1 RPS allowance. Semantic Scholar supports AI agent integrations through multiple community-built MCP servers that expose its academic graph to LLM-based toolchains.
 
-APIs.json: [https://raw.githubusercontent.com/api-evangelist/semantic-scholar/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/semantic-scholar/refs/heads/main/apis.yml)
+**Areas:** Academic · Research · Paper · Citations · Authors · Scientific Literature · Artificial Intelligence · Recommendations · Research Data · Open Access
 
-Manage APIs like this one with [Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=semantic-scholar-api-evangelist&utm_content=repo).
+## Semantic Scholar on APIs.io
 
-## Tags
+Everything profiled for Semantic Scholar is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/semantic-scholar/](https://apis.io/providers/semantic-scholar/)** — or go straight to one of the APIs or properties below.
 
-- Academic
-- Research
-- Papers
-- Citations
-- Authors
-- Scientific Literature
-- AI
-- Recommendations
+### APIs (6)
 
-## APIs
+- [Semantic Scholar Author Data API](https://apis.io/apis/semantic-scholar/semantic-scholar-author-data-api/) — The Author Data API from Semantic Scholar — 4 operation(s) for author data.
+- [Semantic Scholar Incremental Updates API](https://apis.io/apis/semantic-scholar/semantic-scholar-incremental-updates-api/) — The Incremental Updates API from Semantic Scholar — 1 operation(s) for incremental updates.
+- [Semantic Scholar Paper Data API](https://apis.io/apis/semantic-scholar/semantic-scholar-paper-data-api/) — The Paper Data API from Semantic Scholar — 9 operation(s) for paper data.
+- [Semantic Scholar Paper Recommendations API](https://apis.io/apis/semantic-scholar/semantic-scholar-paper-recommendations-api/) — The Paper Recommendations API from Semantic Scholar — 2 operation(s) for paper recommendations.
+- [Semantic Scholar Release Data API](https://apis.io/apis/semantic-scholar/semantic-scholar-release-data-api/) — The Release Data API from Semantic Scholar — 3 operation(s) for release data.
+- [Semantic Scholar Snippet Text API](https://apis.io/apis/semantic-scholar/semantic-scholar-snippet-text-api/) — The Snippet Text API from Semantic Scholar — 1 operation(s) for snippet text.
 
-| Name | Base URL | Documentation |
-|---|---|---|
-| Academic Graph API | https://api.semanticscholar.org/graph/v1 | https://api.semanticscholar.org/api-docs/ |
-| Recommendations API | https://api.semanticscholar.org/recommendations/v1 | https://api.semanticscholar.org/api-docs/recommendations |
-| Datasets API | https://api.semanticscholar.org/datasets/v1 | https://api.semanticscholar.org/api-docs/ |
+### Published properties
 
-## Plans / Rate Limits / FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Resource | Path |
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [semantic-scholar](https://apis.io/servers/semantic-scholar/semantic-scholar/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Semantic Scholar Agentic Access](https://apis.io/agentic-access/semantic-scholar/semantic-scholar-agentic-access/)
+
+#### JSON Schema (4)
+
+The data models the API reads and writes.
+
+- [AuthorWithPapers](https://apis.io/schemas/semantic-scholar/semantic-scholar-author/)
+- [Citation](https://apis.io/schemas/semantic-scholar/semantic-scholar-citation/)
+- [Release Metadata](https://apis.io/schemas/semantic-scholar/semantic-scholar-dataset-release/)
+- [FullPaper](https://apis.io/schemas/semantic-scholar/semantic-scholar-paper/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Semantic Scholar Context](https://apis.io/jsonld/semantic-scholar/semantic-scholar-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Semantic Scholar Vocabulary](https://apis.io/vocabularies/semantic-scholar/semantic-scholar-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Semantic Scholar Datasets Releases Example](https://apis.io/examples/semantic-scholar/semantic-scholar-datasets-releases-example/)
+- [Semantic Scholar Paper Search Example](https://apis.io/examples/semantic-scholar/semantic-scholar-paper-search-example/)
+- [Semantic Scholar Recommendations Example](https://apis.io/examples/semantic-scholar/semantic-scholar-recommendations-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Academic Graph Author Data API](https://apis.io/collections/semantic-scholar/open-semantic-scholar-author-data-api/)
+- [Academic Graph Author Data Incremental Updates API](https://apis.io/collections/semantic-scholar/open-semantic-scholar-incremental-updates-api/)
+- [Academic Graph Author Data Paper Data API](https://apis.io/collections/semantic-scholar/open-semantic-scholar-paper-data-api/)
+- [Academic Graph Author Data Paper Recommendations API](https://apis.io/collections/semantic-scholar/open-semantic-scholar-paper-recommendations-api/)
+- [Academic Graph Author Data Release Data API](https://apis.io/collections/semantic-scholar/open-semantic-scholar-release-data-api/)
+- [Academic Graph Author Data Snippet Text API](https://apis.io/collections/semantic-scholar/open-semantic-scholar-snippet-text-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Semantic Scholar — jsonschema rules](https://apis.io/rules/semantic-scholar/semantic-scholar-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Semantic Scholar Domain Security](https://apis.io/security/semantic-scholar/semantic-scholar-domain-security/)
+- [Semantic Scholar Vulnerability Disclosure](https://apis.io/security/semantic-scholar/semantic-scholar-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Semantic Scholar Plans Pricing](https://apis.io/plans/semantic-scholar/semantic-scholar-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Semantic Scholar Rate Limits](https://apis.io/rate-limits/semantic-scholar/semantic-scholar-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Semantic Scholar Finops](https://apis.io/finops/semantic-scholar/semantic-scholar-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.semanticscholar.org)
+- [Documentation](https://www.semanticscholar.org/product/api)
+- [Pricing](https://www.semanticscholar.org/product/api)
+- [Blog](https://medium.com/ai2-blog/semantic-scholar/home)
+- [Terms of service](https://www.semanticscholar.org/product/api/license)
+- [Privacy policy](https://www.semanticscholar.org/privacy-policy)
+- [GitHub](https://github.com/allenai)
+- [Status](https://status.api.semanticscholar.org/)
+
+## API Evangelist rating
+
+**Kin Score 33.0** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| Plans & Pricing | [plans/semantic-scholar-plans-pricing.yml](plans/semantic-scholar-plans-pricing.yml) |
-| Rate Limits | [rate-limits/semantic-scholar-rate-limits.yml](rate-limits/semantic-scholar-rate-limits.yml) |
-| FinOps | [finops/semantic-scholar-finops.yml](finops/semantic-scholar-finops.yml) |
+| Discoverability | 73.3 |
+| Contract quality | 48.5 |
+| Contract governance | 9.8 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 28.9 |
 
-### Summary
+**Agent readiness 34.3** — agent-ready
 
-- **Billing Model:** Free (freemium)
-- **Unauthenticated:** 100 requests per 5 minutes (shared pool)
-- **Authenticated (API Key):** 1 RPS dedicated; free key via institutional email request
-- **Datasets:** Free bulk corpus downloads with API key; monthly snapshots with diff support
-
-## Timestamps
-
-| Field | Value |
+| Agent-readiness dimension | Result |
 |---|---|
-| Created | 2026-06-12 |
-| Modified | 2026-06-12 |
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
 
-## Common Properties
+**Regulatory alignment 19.1** — Education & Research
 
-| Type | URL |
-|---|---|
-| Website | https://www.semanticscholar.org |
-| Documentation | https://www.semanticscholar.org/product/api |
-| GitHub Organization | https://github.com/allenai |
-| GitHub Repository (s2-folks) | https://github.com/allenai/s2-folks |
-| Blog | https://medium.com/ai2-blog/semantic-scholar/home |
-| Status Page | https://status.api.semanticscholar.org/ |
-| X / Twitter | https://twitter.com/SemanticScholar |
-| Tutorial | https://www.semanticscholar.org/product/api/tutorial |
-| Terms of Service / License | https://www.semanticscholar.org/product/api/license |
-| Privacy Policy | https://www.semanticscholar.org/privacy-policy |
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/semantic-scholar/](https://apis.io/providers/semantic-scholar/).
 
-## Maintainers
+## How this profile is made
 
-| Name | Email |
-|---|---|
-| Kin Lane | kin@apievangelist.com |
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Semantic Scholar: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/semantic-scholar/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
